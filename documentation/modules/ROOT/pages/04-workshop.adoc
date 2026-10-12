@@ -7,7 +7,7 @@
 
 This hands-on workshop guides platform engineers and application developers through service onboarding using Gateway API and Connectivity Link policies. Participants deploy an API, expose it through a Gateway, authenticate callers, apply per-user limits, inspect policy status, and explore monetization options.
 
-The workshop uses the visual Showroom theme used by Open Demo days. Ready-to-apply manifests, scripts, prerequisites, and instructor notes live in the [Workshop guide^](https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop).
+The workshop uses the visual Showroom theme used by Open Demo days. Ready-to-apply manifests, scripts, prerequisites, and instructor notes live in the https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop[Workshop guide^].
 
 [NOTE]
 ====
@@ -62,7 +62,7 @@ After the workshop, participants can:
 
 == Before the session
 
-Use the [Workshop guide^](https://github.com/psehgaft/soln-pattern-connectivity-link/blob/main/workshop/README.md) to prepare the cluster. Platform operators complete installation and health checks before attendees begin. For the platform workflow, see xref:03.1-platform.adoc[Platform Engineer workflow].
+Use the https://github.com/psehgaft/soln-pattern-connectivity-link/blob/main/workshop/README.md[Workshop guide^] to prepare the cluster. Platform operators complete installation and health checks before attendees begin. For the platform workflow, see xref:03.1-platform.adoc[Platform Engineer workflow].
 
 == Lab files
 

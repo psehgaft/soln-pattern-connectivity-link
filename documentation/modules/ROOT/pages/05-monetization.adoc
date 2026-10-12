@@ -7,7 +7,7 @@
 
 This module adds monetization patterns to the Connectivity Link labs. It distinguishes an operational usage estimate from a durable billable event and compares four routes: ConfigMap/Grafana, Lago, Platform Billing Operator, and Moesif.
 
-See the complete [step-by-step monetization guide^](https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop/monetization), including Grafana dashboard files and scripts.
+See the complete https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop/monetization[step-by-step monetization guide^], including Grafana dashboard files and scripts.
 
 == Four options
 
@@ -38,10 +38,10 @@ See the complete [step-by-step monetization guide^](https://github.com/psehgaft/
 
 == Lab sequence
 
-. **Basic dashboard:** verify the `istio_requests_total` series, apply a ConfigMap with an illustrative rate, render the dashboard, and send test requests.
-. **Lago:** create a test metric/subscription, set a test API key outside Git, emit five uniquely identified events, and inspect usage in the test tenant.
-. **Platform Billing Operator:** review package/support status, apply a future-dated PriceBook and Plan in an isolated cluster, and inspect compilation conditions and policies.
-. **Moesif:** identify Gateway proxy labels, render the WASM plugin without committing the Application ID, send test traffic, and inspect captured events.
+. *Basic dashboard:* verify the `istio_requests_total` series, apply a ConfigMap with an illustrative rate, render the dashboard, and send test requests.
+. *Lago:* create a test metric/subscription, set a test API key outside Git, emit five uniquely identified events, and inspect usage in the test tenant.
+. *Platform Billing Operator:* review package/support status, apply a future-dated PriceBook and Plan in an isolated cluster, and inspect compilation conditions and policies.
+. *Moesif:* identify Gateway proxy labels, render the WASM plugin without committing the Application ID, send test traffic, and inspect captured events.
 
 == Expected outcome
 

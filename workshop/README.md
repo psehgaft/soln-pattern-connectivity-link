@@ -151,6 +151,10 @@ kubectl delete namespace "$NS"
 
 Deleting the namespace removes workshop app resources, routes, policies, and training API-key Secrets. It does not uninstall cluster-scoped operators or CRDs.
 
+## Optional monetization track
+
+Continue with [the monetization workshop](../documentation/modules/ROOT/pages/05-monetization.adoc) and the runnable examples under `workshop/monetization/`. It covers ConfigMap and Grafana usage estimates, Lago usage events, Platform Billing Operator for AI inference, and Moesif API analytics.
+
 ## Troubleshooting checklist
 
 - `GatewayClass`: exists and is accepted by the intended provider.
