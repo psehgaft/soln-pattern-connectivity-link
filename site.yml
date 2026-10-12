@@ -3,7 +3,7 @@ runtime:
 site:
   title: Open Demo days | Connectivity Link Workshop
   url: https://psehgaft.github.io/soln-pattern-connectivity-link
-  start_page: solution-pattern::index.adoc
+  start_page: solution-pattern::04-workshop.adoc
 content:
   sources:
     - url: ./
