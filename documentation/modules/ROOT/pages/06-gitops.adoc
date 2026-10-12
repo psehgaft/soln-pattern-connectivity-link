@@ -1,0 +1,54 @@
+= Deploy the workshop with GitOps
+:sectnums:
+:sectlinks:
+:doctype: book
+
+== Overview
+
+The repository includes an OpenShift GitOps (Argo CD) playbook that continuously reconciles the workshop manifests from Git. The core application deploys the Toy Store service, a Gateway and routes, training API keys, AuthPolicy resources, and a RateLimitPolicy.
+
+GitOps manages the workshop namespace and application resources. Install Connectivity Link, the Gateway API provider, OpenShift GitOps, and their cluster-scoped CRDs using the supported operator channels for your platform before applying the workshop Applications.
+
+== Quick start
+
+From the repository root, with an OpenShift cluster ready:
+
+[source,shell]
+----
+oc apply -f gitops/bootstrap/application.yaml
+oc get application connectivity-link-workshop -n openshift-gitops -w
+----
+
+Argo CD creates the `connectivity-link-workshop` namespace and syncs the resources from the `workshop/` Kustomize base. Automated sync applies Git changes; pruning removes deleted resources, and self-heal reverts changes made directly in the cluster.
+
+== Validate
+
+Check the Application sync status and the Gateway API / Connectivity Link conditions:
+
+[source,shell]
+----
+oc get application connectivity-link-workshop -n openshift-gitops
+oc get deployment,service,gateway,httproute,authpolicy,ratelimitpolicy -n connectivity-link-workshop
+oc get gateway workshop -n connectivity-link-workshop -o yaml
+oc get httproute toystore -n connectivity-link-workshop -o yaml
+----
+
+Expected status includes an available Toy Store Deployment, `Accepted=True` and `Programmed=True` on the Gateway, `Accepted=True` and `ResolvedRefs=True` on HTTPRoutes, and `Accepted=True` on the policies.
+
+== Optional Grafana metering
+
+After the core lab is healthy, sync the optional ConfigMap Application:
+
+[source,shell]
+----
+oc apply -f gitops/bootstrap/grafana-application.yaml
+oc get application connectivity-link-grafana-metering -n openshift-gitops -w
+----
+
+This publishes the sample metering ConfigMap in the workshop namespace. Follow xref:05-monetization.adoc[Monetization Workshop] to create/import the dashboard and verify metrics. The Grafana view is an estimate, not a billing ledger.
+
+== Safety and cleanup
+
+The repository includes public sample API keys for training. Never commit production credentials. Use an approved secret-management integration for real environments. Lago, Moesif, and Platform Billing Operator remain optional integrations because they depend on external credentials, tenant setup, or separate operator approval.
+
+The full prerequisite list, troubleshooting commands, and cleanup procedure are in the https://github.com/psehgaft/soln-pattern-connectivity-link/blob/main/gitops/README.md[GitOps playbook^].
