@@ -18,6 +18,15 @@ jobs:
         uses: kameshsampath/antora-site-action@master
         with:
           antora_playbook: site.yml
+      - name: "Publish Antora assets from a GitHub Pages compatible path"
+        run: |
+          cp -R "${{ env.SITE_DIR }}/_." "${{ env.SITE_DIR }}/antora-assets"
+          find "${{ env.SITE_DIR }}" -type f -name '*.html' -exec sed -i \
+            -e 's#../_/css/#../antora-assets/css/#g' \
+            -e 's#../_/img/#../antora-assets/img/#g' \
+            -e 's#../_/js/#../antora-assets/js/#g' \
+            -e 's#href="_/#href="antora-assets/#g' \
+            -e 's#src="_/#src="antora-assets/#g' {} +
       - name: "Upload generated site"
         uses: actions/upload-artifact@v4
         with:
@@ -35,7 +44,7 @@ jobs:
         with:
           name: site
           path: "${{ github.workspace }}/${{ env.SITE_DIR }}"
-      - name: "Keep Antora asset directories on GitHub Pages"
+      - name: "Disable Jekyll processing for Antora assets"
         run: touch "${{ env.SITE_DIR }}/.nojekyll"
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@3.2.1
