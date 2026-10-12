@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Solution Patterns: Connect, Secure and Protect with Red Hat Connectivity Link :: Open Demo days | Connectivity Link Workshop</title>
+    <link rel="canonical" href="https://solutionpatterns.io/solution-pattern/index.html">
+    <link rel="next" href="02-architecture.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&family=Red+Hat+Mono:wght@400;700&family=Red+Hat+Text:wght@400;700&display=swap">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="header">
+  <nav class="navbar" aria-label="Open Demo days">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../index.html" aria-label="Connectivity Link Workshop home">
+        <img src="https://raw.githubusercontent.com/san985tos/automation_governance_model/main/docs/images/open-demo-days.png"
+             alt="Open Demo days — Open Source Labs" height="36">
+        <span class="site-title">Connectivity Link Workshop</span>
+      </a>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="../index.html">Solution Pattern</a>
+        <a class="navbar-item" href="../solution-pattern/master/04-workshop.html">Workshop</a>
+        <a class="navbar-item" href="../solution-pattern/master/05-monetization.html">Monetization labs</a>
+        <a class="navbar-item" href="https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop">GitHub repository</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="solution-pattern" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">Connectivity Link</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">1. Home page</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#use-cases">1.1 Use cases</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#_the_story_behind_this_solution_pattern">1.2 The story behind this solution pattern</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#_the_solution">1.3 The solution</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-architecture.html">2. Architecture</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-architecture.html#tech_stack">2.1. Technology stack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-architecture.html#in_depth">2.2. An in-depth look at the solution&#8217;s architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-architecture.html#more_tech">2.3. More about the technology stack</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-demo.html">3. See the Solution in Action</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-demo.html#_prerequisites">3.1. Pre-requisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.1-platform.html">3.2. Platform Engineer workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.2-developer.html">3.3. Developer workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.3-observability.html">3.4. Monitoring &amp; Observability</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-workshop.html">4. Hands-on Workshop</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_learning_objectives">4.1. Learning objectives</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_delivery_plan">4.2. Delivery plan</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_lab_files">4.3. Lab files</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="05-monetization.html">5. Monetization Workshop</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="developer-resources.html">6. Developer Resources</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text"><a href="https://redhat-solution-patterns.github.io/solution-patterns/patterns.html" target="_blank" rel="noopener">Explore Red Hat Solution Patterns</a></span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Connectivity Link</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>    </div>
+  </aside>
+</div>
+<main class="article" id="content">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link is-current"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Connectivity Link</a></li>
+    <li><a href="index.html">1. Home page</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Solution Patterns: Connect, Secure and Protect with Red Hat Connectivity Link</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/pattern.png" alt="pattern" width="50%">
+</div>
+</div>
+<div class="paragraph">
+<p>With Hybrid cloud becoming the defacto standard, Platform engineering teams face increased complexity of setting up and running environments across multiple clusters and multiple environments There is a need to  make it easy to connect, protect and manage services and infrastructure across the different environments.</p>
+</div>
+<div class="paragraph">
+<p>Red Hat Connectivity Link is  a cloud-native, open source solution, for hybrid cloud to Application Connectivity &amp; Policy Management in single and multi-cluster Kubernetes environments. It is primarily  based on the open source Kuadrant project and builds on the capabilities of Red Hat OpenShift.</p>
+</div>
+<div class="paragraph">
+<p>This Solution Pattern showcases how to setup secure and protected application connectivity with a Kubernetes-native solution using Gateway API and Kuadrant&#8217;s powerful policy APIs.</p>
+</div>
+<div class="paragraph">
+<p><strong>Contributors:</strong> Jaya Christina Baskaran (Red Hat), Bernard Tison (Red Hat), Vamsi Ravula (Red Hat)</p>
+</div>
+ <br>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Solutions Patterns help you understand the art of the possible with Red Hat&#8217;s portfolio, and are not intended to be used as is for production environments. You are welcome to use any part of this solution pattern for your own workloads.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="use-cases"><a class="anchor" href="#use-cases"></a><a class="link" href="#use-cases">1. Use cases</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Common use cases that can be address with this architecture are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Apply Policy-as-Code for repeatable and automated policy-based app-connectivity management</p>
+</li>
+<li>
+<p>Adopt a zero-trust policy for your service endpoints</p>
+</li>
+<li>
+<p>Secure access to expensive resources such as AI LLM endpoints</p>
+</li>
+<li>
+<p>App-connectivity for single or multi-cluster environments</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_story_behind_this_solution_pattern"><a class="anchor" href="#_the_story_behind_this_solution_pattern"></a><a class="link" href="#_the_story_behind_this_solution_pattern">2. The story behind this solution pattern</a></h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/secure-app-connecticity.png" alt="secure app connecticity" width="60%">
+</div>
+</div>
+<div class="paragraph">
+<p>Globex, a fictitious retail company, would like their product catalog to be available for perusal in a secure fashion. This new application will need to access the Product Catalog API in a secure way using OpenID Connect (OIDC) as the authentication layer.</p>
+</div>
+<div class="paragraph">
+<p>Globex also wants to protect the endpoints by easily applying rate limiting and specific levels of access based on accessing users.
+They want all this to be easily managable through configuration without harcoding anything, and should be able to adjust rate limits easily too.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_solution"><a class="anchor" href="#_the_solution"></a><a class="link" href="#_the_solution">3. The Solution</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For this purpose, Globex decides to embrace a policy-as-code approach. As <a href="https://www.gartner.com/document/3992070" target="_blank" rel="noopener">Gartner</a> points out Policy as code (PaC) provides repeatable and automated policy-based management through which one can define security through code.</p>
+</div>
+<div class="paragraph">
+<p>Red Hat Connectivity Link offers simplified Kubernetes application connectivity and policy management across multi-cluster environments. This is achieved through the open source <a href="https://kuadrant.io" target="_blank" rel="noopener">Kuadrant</a> project which brings together Gateway API and Policies to help you scale, load-balance, and secure your gateways in single or multi-cluster environments.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://gateway-api.sigs.k8s.io/" target="_blank" rel="noopener">Gateway API</a> is the new standard for Ingress from the Kubernetes community. It is the next generation of Kubernetes Ingress, Load Balancing, and Service Mesh APIs. It is expressive, and role-oriented.</p>
+</li>
+<li>
+<p><a href="https://kuadrant.io" target="_blank" rel="noopener">Kuadrant</a> provides  Gateway Policies for Kubernetes. The policies can connect, secure, and protect services for TLS, DNS, Auth and Rate Limiting. The observability (metrics) templates make it easy to monitory for compliance.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This pattern aims to cover the following use cases of Connectivity Link</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Connect</strong>: Setup app connectivity across service endpoints.</p>
+</li>
+<li>
+<p><strong>Secure</strong>: Secure traffic with automatic ACME-based TLS integration.</p>
+</li>
+<li>
+<p><strong>Protect</strong>: AuthPolicy and RateLimitPolicy help to protect services with our flexible and powerful policies.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_interactive_demo"><a class="anchor" href="#_interactive_demo"></a><a class="link" href="#_interactive_demo">4. Interactive Demo</a></h2>
+<div class="sectionbody">
+<!--ARCADE EMBED START--><div style="position: relative; padding-bottom: calc(51.66666666666667% + 41px); height: 0; width: 100%;"><iframe src="https://demo.arcade.software/KZZK0MBOybpF5IGVoNqx?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Connect, Secure and Protect with Red Hat Connectivity Link" frameborder="0" loading="lazy" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="clipboard-write" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; color-scheme: light;" ></iframe></div><!--ARCADE EMBED END-->
+</div>
+</div>
+<nav class="pagination">
+  <span class="next"><a href="02-architecture.html" class="query-params-link">2. Architecture</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>  </div>
+</main>
+</div>
+<footer class="footer" style="justify-content: center;">
+  <div>
+    <img src="./_images/red_hat_logo.png" height="40px" alt="Cloud Native Architecture Solution Patterns" href="https://redhat.com">
+  </div>
+</footer>
+<script defer src="../_/js/vendor/clipboard.js"></script>
+<script defer src="../_/js/site.js"></script>
+<script defer src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

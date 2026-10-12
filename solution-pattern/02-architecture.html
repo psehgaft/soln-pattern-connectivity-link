@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Solution Patterns: Connect, Secure and Protect with Red Hat Connectivity Link :: Open Demo days | Connectivity Link Workshop</title>
+    <link rel="canonical" href="https://solutionpatterns.io/solution-pattern/02-architecture.html">
+    <link rel="prev" href="index.html">
+    <link rel="next" href="03-demo.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&family=Red+Hat+Mono:wght@400;700&family=Red+Hat+Text:wght@400;700&display=swap">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="header">
+  <nav class="navbar" aria-label="Open Demo days">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../index.html" aria-label="Connectivity Link Workshop home">
+        <img src="https://raw.githubusercontent.com/san985tos/automation_governance_model/main/docs/images/open-demo-days.png"
+             alt="Open Demo days — Open Source Labs" height="36">
+        <span class="site-title">Connectivity Link Workshop</span>
+      </a>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="../index.html">Solution Pattern</a>
+        <a class="navbar-item" href="../solution-pattern/master/04-workshop.html">Workshop</a>
+        <a class="navbar-item" href="../solution-pattern/master/05-monetization.html">Monetization labs</a>
+        <a class="navbar-item" href="https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop">GitHub repository</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="solution-pattern" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">Connectivity Link</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">1. Home page</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#use-cases">1.1 Use cases</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#_the_story_behind_this_solution_pattern">1.2 The story behind this solution pattern</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#_the_solution">1.3 The solution</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-architecture.html">2. Architecture</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#tech_stack">2.1. Technology stack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#in_depth">2.2. An in-depth look at the solution&#8217;s architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#more_tech">2.3. More about the technology stack</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-demo.html">3. See the Solution in Action</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-demo.html#_prerequisites">3.1. Pre-requisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.1-platform.html">3.2. Platform Engineer workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.2-developer.html">3.3. Developer workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.3-observability.html">3.4. Monitoring &amp; Observability</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-workshop.html">4. Hands-on Workshop</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_learning_objectives">4.1. Learning objectives</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_delivery_plan">4.2. Delivery plan</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_lab_files">4.3. Lab files</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="05-monetization.html">5. Monetization Workshop</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="developer-resources.html">6. Developer Resources</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text"><a href="https://redhat-solution-patterns.github.io/solution-patterns/patterns.html" target="_blank" rel="noopener">Explore Red Hat Solution Patterns</a></span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Connectivity Link</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>    </div>
+  </aside>
+</div>
+<main class="article" id="content">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Connectivity Link</a></li>
+    <li><a href="02-architecture.html">2. Architecture</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Solution Patterns: Connect, Secure and Protect with Red Hat Connectivity Link</h1>
+<h1 id="_architecture" class="sect0"><a class="anchor" href="#_architecture"></a><a class="link" href="#_architecture">Architecture</a></h1>
+<div class="sect1">
+<h2 id="_common_challenges_addressed"><a class="anchor" href="#_common_challenges_addressed"></a><a class="link" href="#_common_challenges_addressed">1. Common Challenges addressed</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With Hybrid Cloud becoming the defacto standard, Platform Engineering teams face increased complexity of setting up and running environments across multiple clusters and multiple regions.</p>
+</div>
+<div class="paragraph">
+<p>There is a need to  make it easy to connect, protect and manage services and infrastructure across the different environments to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Provide a connectivity solution that leverages Gateway API as its foundation which enables platform engineers and application developers to collaborate to connect, secure, protect and observe their HTTP based APIs and infrastructure leveraging CRD based APIs rather than additional heavy weight platforms.</p>
+</li>
+<li>
+<p>Provide a lightweight layer of API management focused tooling that provides an “API management lens” that compliments the core connectivity features.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tech_stack"><a class="anchor" href="#tech_stack"></a><a class="link" href="#tech_stack">2. Technology Stack</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Red Hat supported products</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developers.redhat.com/products/red-hat-connectivity-link/overview" target="_blank" rel="noopener">Red Hat Connectivity Link</a></p>
+</li>
+<li>
+<p><a href="https://www.redhat.com/en/technologies/cloud-computing/openshift" target="_blank" rel="noopener">Red Hat OpenShift</a></p>
+</li>
+<li>
+<p><a href="https://access.redhat.com/products/red-hat-build-of-keycloak/" target="_blank" rel="noopener">Red Hat build of Keycloak</a></p>
+</li>
+<li>
+<p><a href="https://www.redhat.com/en/technologies/cloud-computing/openshift/what-is-openshift-service-mesh" target="_blank" rel="noopener">Red Hat OpenShift Service Mesh</a></p>
+</li>
+<li>
+<p>Red Hat Application Foundation</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://access.redhat.com/products/quarkus">Quarkus</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Other open source products:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://helm.sh/" target="_blank" rel="noopener">Helm</a></p>
+</li>
+<li>
+<p><a href="https://cert-manager.io" target="_blank" rel="noopener">cert-manager</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>DNS Provider in this example</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://aws.amazon.com/route53" target="_blank" rel="noopener">Amazon Route 53</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="in_depth"><a class="anchor" href="#in_depth"></a><a class="link" href="#in_depth">3. An in-depth look at the solution&#8217;s architecture</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With growing demand for mobile based apps, Globex gears to support access to their core services from other channels/applications. In this solution we will look at a step-by-step approach to onboarding a new application and allowing to access the Globex services in a secure fashion.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/architecture.png" alt="architecture">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Globex&#8217;s development team built a <code>Mobile Gateway</code> as a single point of entry (a wrapper) in front of Globex&#8217;s core services. Ref: <a href="https://martinfowler.com/articles/gateway-pattern.html" target="_blank" rel="noopener">gateway-pattern</a></p>
+</li>
+<li>
+<p>The access to this <code>mobile-gateway</code> service endpoint needs to be secured and protected for connectivity from the Mobile App that is being built.</p>
+</li>
+<li>
+<p>To setup such a secure connectivity for a growing demand for access to core services, the Globex team adopts a Kubernetes native approach to application connectivity through Red Hat Connectivity Link.</p>
+</li>
+<li>
+<p>Connectivity Link allows for clear separation of concerns with regard to the various teams involved in setting up such a secure connectivity</p>
+</li>
+<li>
+<p><strong>Platform Engineers</strong> workflow:<br>
+The Platform Engineer has to setup a Gateway which will allow for secure connection to the backend service endpoints. To achieve this a number of components need to be setup.</p>
+<details>
+<summary class="title"><span class="underline">Click to view details about these components</span></summary>
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>A Managed Zone needs to be setup within the DNS provider. E.g.  <code>managed.globex.com</code>.<br>
+Refer to the <a href="https://developers.redhat.com/articles/2024/06/12/getting-started-red-hat-connectivity-link-openshift" target="_blank" rel="noopener">Getting started page</a>  to learn how to setup a Managed Zone.</p>
+</li>
+<li>
+<p><strong>TLS issuer</strong> (a.k.a ClusterIssuer): Sets up a Certificate Issuer to create TLS certificates that are needed to secure communication. In this case, Globex uses <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let&#8217;s Encrypt</a>. This certificate is stored as a secret to be referenced by the Gateways.</p>
+</li>
+<li>
+<p><a href="https://gateway-api.sigs.k8s.io/api-types/gateway/" target="_blank" rel="noopener"><strong>Gateway</strong></a>: create a new Gateway (using the Gateway API and Istio-based controllers) as an entrypoint for all requests to Globex&#8217;s system. The Gateway uses the TLS Certificates created by the TLS Issuer.  Also a number of policies are setup to secure and protect the Gateway.</p>
+</li>
+<li>
+<p><strong>TLS Policy</strong>: leverages the TLS-issuer/CertificateIssuer to set up TLS certificates for the listeners defined within the Gateway. Listeners define the hostname for the various incoming requests and is denoted with a wildcard hostname based on the root domain. These gateways can use a subdomain of the Managed Zone. E.g.  <code>*.managed.globex.com</code>.</p>
+</li>
+<li>
+<p><strong>Auth Policy</strong>: setup a zero-trust deny-all policy that result in a default 403 response for any unprotected endpoints.</p>
+</li>
+<li>
+<p><strong>DNS Policy</strong>: provide DNS management by managing the lifecycle of DNS records to setup ingress connectivity using DNS to bring traffic to the Gateway.</p>
+</li>
+<li>
+<p><strong>RateLimit Policy</strong>^: set up a default, artificially low, global limit to further protect any endpoints exposed by this Gateway.</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
+</li>
+<li>
+<p><strong>Developer/Application owners</strong> workflow:<br>
+Now that the Gateway is made available, the developers can now start onboarding their service endpoints by creating a HTTPRoute representing each endpoint. Developers can also override the Auth and RateLimit policies setup by the Platform Engineer to suit their specific authz/authn needs and  non-functional requirements for rate limiting.</p>
+<details>
+<summary class="title"><span class="underline">Click to view details about these components</span></summary>
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><a href="https://gateway-api.sigs.k8s.io/api-types/httproute/" target="_blank" rel="noopener"><strong>HTTPRoute</strong></a>: this is part of the Gateway API. Setup a HTTPRoute by defining the parent Gateway that was setup by Platform Engineer. Define a hostname for the route so that requests can be sent to the correct route. Rules can be setup to send the requests to the right backend endpoint.</p>
+</li>
+<li>
+<p><strong>AuthPolicy</strong>: Globex adopts OIDC for auth and the developer creates a new policy attached to the HTTPRoute. This policy overrides the <code>deny-all</code> policy created by the Platform Engineer.</p>
+</li>
+<li>
+<p><strong>RateLimit Policy</strong>: the low-limits default RateLimit Policy created at the Gateway level is overridden by this policy to provide for a suitable limit based on non-functional requirements. Any changes can be made easily to the system by applying changes to this policy.</p>
+</li>
+</ol>
+</div>
+</div>
+</details>
+</li>
+<li>
+<p>Once the components and custom resources are in place, a Globex customer can login to the Globex Mobile application. The request will then be served securely through the Connectivity Link platform that has been setup.</p>
+</li>
+<li>
+<p>Suitable metrics can also be enabled which will be covered in the next version of this Solution Pattern.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="more_tech"><a class="anchor" href="#more_tech"></a><a class="link" href="#more_tech">4. About the Technology Stack</a></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_gateway_api"><a class="anchor" href="#_gateway_api"></a><a class="link" href="#_gateway_api">4.1. Gateway API</a></h3>
+<div class="paragraph">
+<p>Ref: <a href="https://gateway-api.sigs.k8s.io/" target="_blank" rel="noopener">Gateway API</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>New standard for Ingress from k8s community</p>
+</li>
+<li>
+<p>Gateway API is the core API that Kuadrant integrates with.</p>
+</li>
+<li>
+<p>Represent L4/L7 routing and traffic management through generic common core API resources</p>
+</li>
+<li>
+<p>API  resources reflects the separation of responsibilities such as infra provider, PE or App Dev</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Connectivity Link (Kuadrant) provides connectivity, security and service protection capabilities in the form of Kubernetes CRDs that implement the Gateway API concept of policy attachment. These policy APIs can target specific Gateway API resources such as Gateways and HTTPRoutes to extend their capabilities and configuration.</p>
+</div>
+<details>
+<summary class="title"><span class="underline">Click to view why Gateway API</span></summary>
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Role Oriented - To allow cluster owners to designate how the infrastructure is used</p>
+</li>
+<li>
+<p>Portable - This enables concepts &amp; resources to be uniform across environments reducing complexity</p>
+</li>
+<li>
+<p>Expressive - Provides built-in capabilities for header-based matching, traffic weighting &amp; more</p>
+</li>
+</ul>
+</div>
+</div>
+</details>
+<div class="sect3">
+<h4 id="_gateway"><a class="anchor" href="#_gateway"></a><a class="link" href="#_gateway">4.1.1. Gateway</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>describes how traffic can be translated to Services within the cluster</p>
+</li>
+<li>
+<p>can express capabilities like HTTP header manipulation, traffic weighting &amp; mirroring, TCP/UDP routing</p>
+</li>
+<li>
+<p>may be attached to one or more Route references which serve to direct traffic for a subset of traffic to a specific service</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_httproute"><a class="anchor" href="#_httproute"></a><a class="link" href="#_httproute">4.1.2. HTTPRoute</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>enables advanced routing capabilities for Ingress.</p>
+</li>
+<li>
+<p>specify routing behavior of HTTP requests from a Gateway listener to an API object, i.e. Service.</p>
+</li>
+<li>
+<p>Each Route includes a way to reference the parent resources it wants to attach to.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_openshift_service_mesh_and_istio_as_gateway_provider"><a class="anchor" href="#_openshift_service_mesh_and_istio_as_gateway_provider"></a><a class="link" href="#_openshift_service_mesh_and_istio_as_gateway_provider">4.2. OpenShift Service Mesh and Istio as Gateway provider</a></h3>
+<div class="paragraph">
+<p>OpenShift Service Mesh is a supported Gateway API provider and Connectivity Link integrates with Istio (via WASM and Istio APIS) to provide service protection capabilities. It configures Envoy via the Istio control plane to enforce the applied policies and register components such as Authorino and Limitador.</p>
+</div>
+<div class="paragraph">
+<p>Ref: <a href="https://istio.io/latest/docs/tasks/traffic-management/ingress/gateway-api/" target="_blank" rel="noopener">Istio with Gateway API</a></p>
+</div>
+<div class="paragraph">
+<p>Kuadrant has also been proven to work with Envoy Gateway as a Gateway API provider. This is to showcase that Kudrant is extensible and can work work with other Gateway providers too. To try this out check out <a href="https://docs.kuadrant.io/latest/kuadrant-operator/doc/install/install-openshift/#step-5-optional-install-envoy-gateway-as-a-gateway-api-provider" target="_blank" rel="noopener">this tutorial</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cert_manager"><a class="anchor" href="#_cert_manager"></a><a class="link" href="#_cert_manager">4.3. Cert Manager</a></h3>
+<div class="paragraph">
+<p>The cert-manager Operator for Red Hat OpenShift is a cluster-wide service that provides application certificate lifecycle management. It allows you to integrate with external certificate authorities and provides certificate provisioning, renewal, and retirement. In this solution pattern, we integrate with <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let&#8217;s Encrypt</a>.</p>
+</div>
+<div class="paragraph">
+<p>If needed, one can create the certificates manually and inject them, rather than using cert-manager. You can create a secret <code>my-cert</code> (as an e.g.) and add that to a listener in the gateway. TLSPolicy is a very light API wrapper around cert-manager resources that makes the target, host and secret name obvious as already defined in the gateway listener.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kuadrant"><a class="anchor" href="#_kuadrant"></a><a class="link" href="#_kuadrant">4.4. Kuadrant</a></h3>
+<div class="videoblock">
+<div class="content">
+<iframe width="800" height="480" src="https://www.youtube.com/embed/euWAMvQojP4?rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="paragraph">
+<p>It enables platform engineers and application developers to easily connect, secure, and protect their services and infrastructure across multiple clusters. It exposes these capabilities in the form of powerful policy APIs that implement the <a href="https://gateway-api.sigs.k8s.io/" target="_blank" rel="noopener">Gateway API</a> concept of <a href="https://gateway-api.sigs.k8s.io/reference/policy-attachment/" target="_blank" rel="noopener">policy attachment</a> -   with policies for <a href="https://docs.kuadrant.io/1.0.x/kuadrant-operator/doc/overviews/tls/" target="_blank" rel="noopener">TLS</a>, <a href="https://docs.kuadrant.io/1.0.x/kuadrant-operator/doc/overviews/dns/" target="_blank" rel="noopener">DNS</a>, application <a href="https://docs.kuadrant.io/1.0.x/kuadrant-operator/doc/overviews/auth/" target="_blank" rel="noopener">AuthN &amp; AuthZ</a>, and <a href="https://docs.kuadrant.io/1.0.x/kuadrant-operator/doc/overviews/rate-limiting/" target="_blank" rel="noopener">rate limiting</a>. Additionally, Kuadrant offers observability templates to further support infrastructure management.</p>
+</div>
+<div class="paragraph">
+<p>Simply put, Red Hat Connectivity Link</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>provides a  bunch of policies (through Kuadrant APIs) - that can be applied on Gateway API resources viz. Gateway and HttpRoute…</p>
+</li>
+<li>
+<p>so that you can connect, secure and protect all of your service endpoints</p>
+</li>
+<li>
+<p>providing the Platform Engineers the right level of control</p>
+</li>
+<li>
+<p>providing Developers the tools for a more fully rounded API mgmt feature set through Apicurio.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/rhcl-simplyput.png" alt="rhcl simplyput" width="60%">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_personas"><a class="anchor" href="#_personas"></a><a class="link" href="#_personas">4.5. Personas</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Platform engineers</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>can deploy, manage, observe and protect services exposed via their gateways</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>confidently allow application developers to self-service knowing that endpoints are secured</p>
+</li>
+<li>
+<p><strong>Application developers</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>are allowed to self service and refine policies to their specific needs in order to protect exposed endpoints.</p>
+</li>
+<li>
+<p>focus on what is important for them - their applications and code</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_kuadrant_underlying_components"><a class="anchor" href="#_kuadrant_underlying_components"></a><a class="link" href="#_kuadrant_underlying_components">4.6. Kuadrant' underlying components</a></h3>
+<div class="paragraph">
+<p>Here is a view on how Kuadrant Policy APIs are applied on the Request flow on Gateway API</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/policies-on-requestflow.png" alt="policies on requestflow">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dns_operator"><a class="anchor" href="#_dns_operator"></a><a class="link" href="#_dns_operator">4.6.1. DNS Operator</a></h4>
+<div class="paragraph">
+<p>DNS operator consumes DNSRecord resources that are configured via the <strong>DNSPolicy</strong> API and applies them into the targeted cloud DNS provider. AWS, Azure and Google DNS are our main targets.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_authorino_operator_for_auth_policy"><a class="anchor" href="#_authorino_operator_for_auth_policy"></a><a class="link" href="#_authorino_operator_for_auth_policy">4.6.2. Authorino Operator for Auth Policy</a></h4>
+<div class="paragraph">
+<p>External authorization server fully manageable via Kubernetes Custom Resources. Supports JWT authentication, API key, mTLS, pattern-matching authz, OPA, K8s SA tokens, K8s RBAC, external metadata fetching, and more, with minimum to no coding at all, no rebuilding of your applications.<br>
+Ref: <a href="https://docs.kuadrant.io/1.0.x/authorino/" class="bare">https://docs.kuadrant.io/1.0.x/authorino/</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_limitador_operator_for_ratelimits"><a class="anchor" href="#_limitador_operator_for_ratelimits"></a><a class="link" href="#_limitador_operator_for_ratelimits">4.6.3. Limitador Operator for Ratelimits</a></h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Limitador is a generic rate-limiter and can be enabled using RateLimit APIs.</p>
+</li>
+<li>
+<p>It support in-memory, Redis and disk data stores.</p>
+</li>
+<li>
+<p>In this solution pattern, for a single cluster, we go with the built-in in-memory database;</p>
+</li>
+<li>
+<p>for multi-cluster setup you can use a  Redis service (or RocksDB)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_policies"><a class="anchor" href="#_policies"></a><a class="link" href="#_policies">4.7. Policies</a></h3>
+<div class="paragraph">
+<p>Kuadrant at its heart, provides Gateway Policies (as described previously) for Kubernetes. To quote <a href="https://kuadrant.io/" class="bare">https://kuadrant.io/</a>:</p>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Gateways play a pivotal role in application connectivity. With Kuadrant, platform engineers and application developers can easily connect, secure and protect their services and infrastructure using its powerful policy APIs</p>
+</div>
+</blockquote>
+</div>
+<div class="sect3">
+<h4 id="_policy_attachement"><a class="anchor" href="#_policy_attachement"></a><a class="link" href="#_policy_attachement">4.7.1. Policy Attachement</a></h4>
+<div class="paragraph">
+<p>Policy Attachment augments the behavior of an object to add additional settings that can&#8217;t be described within the spec of that object. A "Policy Attachment" is a specific type of resource that can affect specific settings across either one object (this is "Direct Policy Attachment"), or objects in a hierarchy (this is "Inherited Policy Attachment").<br>
+Ref: <a href="https://gateway-api.sigs.k8s.io/reference/policy-attachment/" class="bare">https://gateway-api.sigs.k8s.io/reference/policy-attachment/</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_defaults_and_overrides"><a class="anchor" href="#_defaults_and_overrides"></a><a class="link" href="#_defaults_and_overrides">4.7.2. Defaults and overrides</a></h4>
+<div class="paragraph">
+<p>AuthPolicy and RateLimitPolicy can be attached to Gateways or to HTTPRoutes, with cascading effects through the hierarchy that result in one effective policy per gateway-route combination.</p>
+</div>
+<div class="paragraph">
+<p>Ref: More about <a href="https://docs.kuadrant.io/1.0.x/architecture/rfcs/0009-defaults-and-overrides/" target="_blank" rel="noopener">defaults and overrides</a></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_red_hat_build_of_keycloak_for_oauth"><a class="anchor" href="#_red_hat_build_of_keycloak_for_oauth"></a><a class="link" href="#_red_hat_build_of_keycloak_for_oauth">4.8. Red Hat build of Keycloak for OAuth</a></h3>
+<div class="paragraph">
+<p><a href="https://access.redhat.com/products/red-hat-build-of-keycloak/" target="_blank" rel="noopener">Red Hat build of Keycloak</a> is a cloud-native Identity Access Management solution based on the popular open source <a href="https://keycloak.org/" target="_blank" rel="noopener">Keycloak project</a></p>
+</div>
+<div class="paragraph">
+<p>This Solution Pattern leverages Keycloak to setup authentication mechanism within the APIPolicy CR. An AuthPolicy can be setup either based on an API Key or Oauth, while OAuth is more preferrable.</p>
+</div>
+<div class="paragraph">
+<p>Here is an excerpt of an AuthPolicy.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">  rules:
+    authentication:
+      "keycloak-users":
+        jwt:
+          issuerUrl: https://sso.mykeycloak.example.com/realms/realmname
+    response:
+      success:
+        filters:
+          identity:
+            json:
+              properties:
+                userid:
+                  selector: auth.identity.sub</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Note that the Keycloak&#8217;s Issuer URL is configured within the AuthPolicy, and also the <code>userid</code> from the JWT token is being used an identifier.</p>
+</li>
+<li>
+<p>The mobile application used the same Keycloak realm for user authentication.</p>
+</li>
+<li>
+<p>Once the user logs in, the JWT token from the app is then analysed for validity as pet the APIPolicy (this is done by by <a href="https://github.com/Kuadrant/authorino" target="_blank" rel="noopener">Authorino</a> which is a lightweight Envoy external authorization server)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="index.html" class="query-params-link">1. Home page</a></span>
+  <span class="next"><a href="03-demo.html" class="query-params-link">3. See the Solution in Action</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>  </div>
+</main>
+</div>
+<footer class="footer" style="justify-content: center;">
+  <div>
+    <img src="./_images/red_hat_logo.png" height="40px" alt="Cloud Native Architecture Solution Patterns" href="https://redhat.com">
+  </div>
+</footer>
+<script defer src="../_/js/vendor/clipboard.js"></script>
+<script defer src="../_/js/site.js"></script>
+<script defer src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

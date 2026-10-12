@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Solution Patterns: Connect, Secure and Protect with Red Hat Connectivity Link :: Open Demo days | Connectivity Link Workshop</title>
+    <link rel="canonical" href="https://solutionpatterns.io/solution-pattern/03.1-platform.html">
+    <link rel="prev" href="03-demo.html">
+    <link rel="next" href="03.2-developer.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&family=Red+Hat+Mono:wght@400;700&family=Red+Hat+Text:wght@400;700&display=swap">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="header">
+  <nav class="navbar" aria-label="Open Demo days">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../index.html" aria-label="Connectivity Link Workshop home">
+        <img src="https://raw.githubusercontent.com/san985tos/automation_governance_model/main/docs/images/open-demo-days.png"
+             alt="Open Demo days — Open Source Labs" height="36">
+        <span class="site-title">Connectivity Link Workshop</span>
+      </a>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="../index.html">Solution Pattern</a>
+        <a class="navbar-item" href="../solution-pattern/master/04-workshop.html">Workshop</a>
+        <a class="navbar-item" href="../solution-pattern/master/05-monetization.html">Monetization labs</a>
+        <a class="navbar-item" href="https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop">GitHub repository</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="solution-pattern" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">Connectivity Link</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">1. Home page</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#use-cases">1.1 Use cases</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#_the_story_behind_this_solution_pattern">1.2 The story behind this solution pattern</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#_the_solution">1.3 The solution</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-architecture.html">2. Architecture</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-architecture.html#tech_stack">2.1. Technology stack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-architecture.html#in_depth">2.2. An in-depth look at the solution&#8217;s architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-architecture.html#more_tech">2.3. More about the technology stack</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-demo.html">3. See the Solution in Action</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-demo.html#_prerequisites">3.1. Pre-requisites</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="03.1-platform.html">3.2. Platform Engineer workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.2-developer.html">3.3. Developer workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.3-observability.html">3.4. Monitoring &amp; Observability</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-workshop.html">4. Hands-on Workshop</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_learning_objectives">4.1. Learning objectives</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_delivery_plan">4.2. Delivery plan</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_lab_files">4.3. Lab files</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="05-monetization.html">5. Monetization Workshop</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="developer-resources.html">6. Developer Resources</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text"><a href="https://redhat-solution-patterns.github.io/solution-patterns/patterns.html" target="_blank" rel="noopener">Explore Red Hat Solution Patterns</a></span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Connectivity Link</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>    </div>
+  </aside>
+</div>
+<main class="article" id="content">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Connectivity Link</a></li>
+    <li><a href="03-demo.html">3. See the Solution in Action</a></li>
+    <li><a href="03.1-platform.html">3.2. Platform Engineer workflow</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Solution Patterns: Connect, Secure and Protect with Red Hat Connectivity Link</h1>
+<h1 id="_see_the_solution_in_action" class="sect0"><a class="anchor" href="#_see_the_solution_in_action"></a><a class="link" href="#_see_the_solution_in_action">See the Solution in Action</a></h1>
+<div class="sect1">
+<h2 id="_walkthrough_as_a_platform_engineer"><a class="anchor" href="#_walkthrough_as_a_platform_engineer"></a><a class="link" href="#_walkthrough_as_a_platform_engineer">1. Walkthrough As a Platform Engineer</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The ansible scripts we just ran have set up the following as ArgoCD applications:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Red Hat Connectivity Link operator and a Kuadrant instance</p>
+</li>
+<li>
+<p>A TLS issuer for TLS certificates. [<a href="https://console-openshift-console.%OPENSHIFTSUBDOMAIN%/k8s/cluster/cert-manager.io~v1~ClusterIssuer/prod-web-lets-encrypt-issuer/yaml" target="_blank" rel="noopener">View CR</a>]</p>
+<details>
+<summary class="title"><span class="underline">Click to see an example and description</span></summary>
+<div class="content">
+<div class="sidebarblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: prod-web-lets-encrypt-issuer
+spec:
+  acme:
+    email: abc@example.com
+    preferredChain: ''
+    privateKeySecretRef:
+      name: le-production
+    server: 'https://acme-v02.api.letsencrypt.org/directory'
+    solvers:
+      - dns01:
+          route53:
+            accessKeyIDSecretRef:
+              key: ********
+              name: ********
+            region: ********
+            secretAccessKeySecretRef:
+              key: AWS_SECRET_ACCESS_KEY
+              name: ********</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>TLS Issuer references the ACME server  <a href="https://letsencrypt.org/" target="_blank" rel="noopener">Let&#8217;s Encrypt</a></p>
+</li>
+<li>
+<p>It uses the DNS providers credentials, in this case AWS, to create the TLS certificates</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</details>
+</li>
+<li>
+<p>A Gateway (based on Istio Gateway) with a wildcard hostname based on the root domain. [<a href="https://console-openshift-console.%OPENSHIFTSUBDOMAIN%/k8s/ns/ingress-gateway/gateway.networking.k8s.io~v1~Gateway/prod-web/yaml" target="_blank" rel="noopener">View CR</a>]</p>
+<details>
+<summary class="title"><span class="underline">Click to see an example and description</span></summary>
+<div class="content">
+<div class="sidebarblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: prod-web
+  namespace: ingress-gateway
+  labels:
+    app.kubernetes.io/instance: ingress-gateway
+    kuadrant.io/lb-attribute-geo-code: EU
+spec:
+  gatewayClassName: istio
+  listeners:
+    - allowedRoutes:
+        namespaces:
+          from: All
+      hostname: '*.globex.mycluster.example.com'
+      name: api
+      port: 443
+      protocol: HTTPS
+      tls:
+        certificateRefs:
+          - group: ''
+            kind: Secret
+            name: api-tls
+        mode: Terminate</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>gatewayClassName refers to Istio as a the provider (Istio  has also been setup by the Ansible script)</p>
+</li>
+<li>
+<p>Note the <code>certificateRefs</code> in the above Custom Resource. This name <code>name: api-tls</code> defines the name of the secret where the certificate will be stored when it gets generated by Cert Manager</p>
+</li>
+<li>
+<p>To view this secret click <a href="https://console-openshift-console.%OPENSHIFTSUBDOMAIN%/k8s/ns/ingress-gateway/secrets/api-tls" target="_blank" rel="noopener">here</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</details>
+</li>
+<li>
+<p>Various policies attached to the Gateway:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>A default <code>deny-all</code> Auth Policy to start with zero trust [<a href="https://console-openshift-console.%OPENSHIFTSUBDOMAIN%/k8s/ns/ingress-gateway/kuadrant.io~v1~AuthPolicy/prod-web-deny-all/yaml" target="_blank" rel="noopener">View CR</a>]</p>
+<details>
+<summary class="title"><span class="underline">Click to see an example and description</span></summary>
+<div class="content">
+<div class="sidebarblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">apiVersion: kuadrant.io/v1
+kind: AuthPolicy
+metadata:
+  name: prod-web-deny-all
+  namespace: ingress-gateway
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: Gateway
+    name: ingress-gateway
+  rules:
+    authorization:
+      deny-all:
+        opa:
+          rego: "allow = false"
+    response:
+      unauthorized:
+        headers:
+          "content-type":
+            value: application/json
+        body:
+          value: |
+            {
+              "error": "Forbidden",
+              "message": "Access denied by default by the gateway operator. If you are the administrator of the service, create a specific auth policy for the route."
+            }</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the target states that this AuthPolicy is attached to a specific Gateway</p>
+</li>
+<li>
+<p>AuthorizationRule in this case is based pon <strong>opa</strong> - Open Policy Agent (OPA) Rego policy.</p>
+</li>
+<li>
+<p>You can define the response to be sent in the <strong>response</strong> section; in this case, a response has been defined for <strong>unauthorized</strong> requests</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</details>
+</li>
+<li>
+<p>TLS Policy [<a href="https://console-openshift-console.%OPENSHIFTSUBDOMAIN%/k8s/ns/ingress-gateway/kuadrant.io~v1~TLSPolicy/prod-web-tls-policy/yaml" target="_blank" rel="noopener">View CR</a>]</p>
+<details>
+<summary class="title"><span class="underline">Click to see an example and description</span></summary>
+<div class="content">
+<div class="sidebarblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">apiVersion: kuadrant.io/v1
+kind: TLSPolicy
+metadata:
+  name: prod-web-tls-policy
+  namespace: ingress-gateway
+  finalizers:
+    - kuadrant.io/tls-policy
+  labels:
+    app.kubernetes.io/instance: ingress-gateway
+spec:
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: prod-web-lets-encrypt-issuer
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: Gateway
+    name: prod-web</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>This policy uses the  CertificateIssuer to set up TLS certificates for the listeners defined within the Gateway.</p>
+</li>
+<li>
+<p>The TLS certificate generated is attached to the Gateway as secret.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</details>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>A sample EchoAPI endpoint and it&#8217;s HTTPRoute:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>This is service literally echoes the request and is just used here for testing purposes. [<a href="https://console-openshift-console.%OPENSHIFTSUBDOMAIN%/k8s/ns/echo-api/gateway.networking.k8s.io~v1~HTTPRoute/echo-api/yaml" target="_blank" rel="noopener">View HTTPRoute</a>]</p>
+<details>
+<summary class="title"><span class="underline">Click to see an example and description</span></summary>
+<div class="content">
+<div class="sidebarblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: echo-api
+  namespace: echo-api
+spec:
+  hostnames:
+    - echo.globex.mycluster.example.com
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: prod-web
+      namespace: ingress-gateway
+  rules:
+    - backendRefs:
+        - group: ''
+          kind: Service
+          name: echo-api
+          namespace: echo-api
+          port: 8080
+          weight: 1
+      matches:
+        - path:
+            type: PathPrefix
+            value: /</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the <strong>hostname</strong> will be to access the service that is defined within <strong>backendRefs</strong></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</details>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_create_a_dns_policy"><a class="anchor" href="#_create_a_dns_policy"></a><a class="link" href="#_create_a_dns_policy">1.1. Create a DNS Policy</a></h3>
+<div class="paragraph">
+<p>Now that we have set up a secure, protected application connectivity environment, we are now ready to expose this to the Internet. We will do so by creating a DNSPolicy<br></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Copy the following into the <strong>Import YAML</strong> utility accessible by the (+) button on top of the <a href="https://console-openshift-console.%OPENSHIFTSUBDOMAIN%" target="_blank" rel="noopener">OpenShift Console</a></p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell script hljs" data-lang="shell script">apiVersion: kuadrant.io/v1
+kind: DNSPolicy
+metadata:
+  name: prod-web-dnspolicy
+  namespace: ingress-gateway
+spec:
+  targetRef:
+    name: prod-web
+    group: gateway.networking.k8s.io
+    kind: Gateway
+  providerRefs:
+  - name: prod-web-aws-credentials</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The DNSPolicy acts against a target Gateway by processing its listeners for hostnames and then creating DNS records for those hostnames.</p>
+</li>
+<li>
+<p>Note that the DNSPolicy doesn&#8217;t contain a <strong>routingStrategy</strong> because this is a single cluster deployment. But in case of multi-cluster deployments DNSPolicy allows for <code>routingStrategy: loadbalanced</code> and can optionally include load-balancing specifications.</p>
+</li>
+<li>
+<p>The <strong>targetRef</strong> sections refers to the [<a href="https://console-openshift-console.%OPENSHIFTSUBDOMAIN%/k8s/ns/ingress-gateway/gateway.networking.k8s.io~v1~Gateway/prod-web/yaml" target="_blank" rel="noopener">Gateway</a>] created when the Ansible script was executed.</p>
+</li>
+<li>
+<p>A number of DNS records are created on AWS Route 53.</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/route53-dnsrecords.png" alt="route53 dnsrecords">
+</div>
+</div>
+</li>
+</ul>
+</div>
+<hr>
+</div>
+<div class="sect2">
+<h3 id="_echo_api_walkthrough"><a class="anchor" href="#_echo_api_walkthrough"></a><a class="link" href="#_echo_api_walkthrough">1.2. Echo API Walkthrough</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Check if the HTTPRoute works as it should. Run this curl command from a terminal.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+There could be delays in the DN propogation to local development environments, including a laptop. Typically, due to the nature of DNS Records it may take a while for them to get propagated. You can make use of the AWS Terminal to execute the <code>curl</code> command instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell script hljs" data-lang="shell script">curl -k -w "%{http_code}" https://echo.globex.%AWSROOTZONE%</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>The Output will look like this</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">{
+  "method": "GET",
+  "path": "/",
+  "query_string": null,
+  "body": "",
+  "headers": {
+    "HTTP_HOST": "echo.%AWSROOTZONE%",
+    ...
+  }
+  ..
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now let us run this 10 times and see how this responds to <code>RateLimitPolicy</code> that was applied</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell script hljs" data-lang="shell script">for i in {1..10}; do curl -k -w "%{http_code}" https://echo.globex.%AWSROOTZONE%; done</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>You will see that you get a response 5 times, after which you see <strong>Too Many Requests 429</strong></p>
+</li>
+<li>
+<p>We haven&#8217;t set up a RateLimitPolicy for the echoAPI itself, and so the gateway&#8217;s default RateLimitPolicy gets applied to the echoAPI HTTPRoute. You can create another RateLimitPolicy and attach it to the echoAPI HTTPRoute to check this out.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell script hljs" data-lang="shell script">apiVersion: kuadrant.io/v1
+kind: RateLimitPolicy
+metadata:
+  name: echo-api-rlp
+  namespace: echo-api
+spec:
+  limits:
+    echoa-api:
+      rates:
+        - limit: 10
+          window: 12s
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: echo-api</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Now run this 10 times and you will see successful output from the echoAPI for all 10 requests. Make sure you allow for a reasonable time interval between requests.</p>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell script hljs" data-lang="shell script">for i in {1..10}; do curl -k -w "%{http_code}" https://echo.globex.%AWSROOTZONE%; done</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Learn more about Rate Limiting <a href="https://docs.kuadrant.io/1.0.x/kuadrant-operator/doc/overviews/rate-limiting/" target="_blank" rel="noopener">here</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_whats_next"><a class="anchor" href="#_whats_next"></a><a class="link" href="#_whats_next">1.3. What&#8217;s next</a></h3>
+<div class="paragraph">
+<p>In the next section, we&#8217;ll go through the <strong>Developer&#8217;s Workflow</strong></p>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="03-demo.html" class="query-params-link">3. See the Solution in Action</a></span>
+  <span class="next"><a href="03.2-developer.html" class="query-params-link">3.3. Developer workflow</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>  </div>
+</main>
+</div>
+<footer class="footer" style="justify-content: center;">
+  <div>
+    <img src="./_images/red_hat_logo.png" height="40px" alt="Cloud Native Architecture Solution Patterns" href="https://redhat.com">
+  </div>
+</footer>
+<script defer src="../_/js/vendor/clipboard.js"></script>
+<script defer src="../_/js/site.js"></script>
+<script defer src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

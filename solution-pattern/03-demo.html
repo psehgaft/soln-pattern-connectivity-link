@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Solution Patterns: Connect, Secure and Protect with Red Hat Connectivity Link :: Open Demo days | Connectivity Link Workshop</title>
+    <link rel="canonical" href="https://solutionpatterns.io/solution-pattern/03-demo.html">
+    <link rel="prev" href="02-architecture.html">
+    <link rel="next" href="03.1-platform.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&family=Red+Hat+Mono:wght@400;700&family=Red+Hat+Text:wght@400;700&display=swap">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="header">
+  <nav class="navbar" aria-label="Open Demo days">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../index.html" aria-label="Connectivity Link Workshop home">
+        <img src="https://raw.githubusercontent.com/san985tos/automation_governance_model/main/docs/images/open-demo-days.png"
+             alt="Open Demo days — Open Source Labs" height="36">
+        <span class="site-title">Connectivity Link Workshop</span>
+      </a>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="../index.html">Solution Pattern</a>
+        <a class="navbar-item" href="../solution-pattern/master/04-workshop.html">Workshop</a>
+        <a class="navbar-item" href="../solution-pattern/master/05-monetization.html">Monetization labs</a>
+        <a class="navbar-item" href="https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop">GitHub repository</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="solution-pattern" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">Connectivity Link</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">1. Home page</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#use-cases">1.1 Use cases</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#_the_story_behind_this_solution_pattern">1.2 The story behind this solution pattern</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#_the_solution">1.3 The solution</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-architecture.html">2. Architecture</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-architecture.html#tech_stack">2.1. Technology stack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-architecture.html#in_depth">2.2. An in-depth look at the solution&#8217;s architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-architecture.html#more_tech">2.3. More about the technology stack</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-demo.html">3. See the Solution in Action</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#_prerequisites">3.1. Pre-requisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.1-platform.html">3.2. Platform Engineer workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.2-developer.html">3.3. Developer workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.3-observability.html">3.4. Monitoring &amp; Observability</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-workshop.html">4. Hands-on Workshop</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_learning_objectives">4.1. Learning objectives</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_delivery_plan">4.2. Delivery plan</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_lab_files">4.3. Lab files</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="05-monetization.html">5. Monetization Workshop</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="developer-resources.html">6. Developer Resources</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text"><a href="https://redhat-solution-patterns.github.io/solution-patterns/patterns.html" target="_blank" rel="noopener">Explore Red Hat Solution Patterns</a></span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Connectivity Link</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>    </div>
+  </aside>
+</div>
+<main class="article" id="content">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Connectivity Link</a></li>
+    <li><a href="03-demo.html">3. See the Solution in Action</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Solution Patterns: Connect, Secure and Protect with Red Hat Connectivity Link</h1>
+<h1 id="_see_the_solution_in_action" class="sect0"><a class="anchor" href="#_see_the_solution_in_action"></a><a class="link" href="#_see_the_solution_in_action">See the Solution in Action</a></h1>
+<div class="openblock partintro">
+<div class="content">
+This solution walks you through the activities from the lens of a Platform Engineer and a Developer. But first, we need a few prerequisites before getting started.
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a><a class="link" href="#_prerequisites">1. Prerequisites</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To provision the demo you will perform the following steps - each of which is explained in detail in the next sections:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>You will need an OpenShift cluster with <strong><code>cluster-admin</code> privileges</strong>. This solution pattern has been tested on OpenShift 4.16 and 4.17</p>
+</li>
+<li>
+<p>Ensure you have the <strong>tools</strong> <code>oc</code> and <code>ansible</code> installed in your local environment such as your laptop</p>
+</li>
+<li>
+<p>Access to <strong>AWS Route53</strong> or <strong>Google Cloud DNS</strong> to be able to create new domain names</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_cli_tools"><a class="anchor" href="#_cli_tools"></a><a class="link" href="#_cli_tools">1.1. CLI tools</a></h3>
+<div class="paragraph">
+<p>To check if you have the cli tools, you can open your terminal and use following commands:</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell script hljs" data-lang="shell script">oc version #openshift cli client
+ansible --version
+ansible-galaxy --version
+ansible-galaxy collection list #the list should include kubernetes.core and amazon.aws.route53 (version 8.1.0 ) module</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Please run these commands to ensure you have the right dependencies</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell script hljs" data-lang="shell script">pip install openshift pyyaml kubernetes botocore boto3
+ansible-galaxy collection install kubernetes.core amazon.aws community.general</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_managed_zone_on_aws"><a class="anchor" href="#_managed_zone_on_aws"></a><a class="link" href="#_managed_zone_on_aws">1.2. Managed Zone on AWS</a></h3>
+<div class="paragraph">
+<p>It is good to note that you  need a hosted zone as a <strong>subdomain</strong> in AWS Route53 ] (for example, managed.myrootdomain.com) for the applications that you want to manage and secure with Connectivity Link.</p>
+</div>
+<div class="paragraph">
+<p>This <strong>subdomain</strong>  is automatically setup by the deployment scripts. But you will need to update the <code>inventory</code> file with the root domain of AWS Route53 when you are instructed to in next sections.<br></p>
+</div>
+<div class="paragraph">
+<p>Ref: <a href="https://repost.aws/knowledge-center/create-subdomain-route-53" target="_blank" rel="noopener">this article</a> to know more about how a Route53 subdomain can be created.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_personalize_the_instructions"><a class="anchor" href="#_personalize_the_instructions"></a><a class="link" href="#_personalize_the_instructions">1.3. Personalize the instructions</a></h3>
+<div class="paragraph">
+<p>To personalize the rest of the instructions to your OpenShift environment:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>At the top-right of this page enter the following information under the <strong>Your Workshop Environment</strong> section</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>AWSROOTZONE</strong> is the Root Route53 domain of your AWS environment.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The AWSROOTZONE would look something like this <code>mycluster.abc.com</code> or <code>sandbox100.opentlc.com</code></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p><strong>OPENSHIFTSUBDOMAIN</strong> to match your OpenShift cluster</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The OPENSHIFTSUBDOMAIN would look something like this <code>apps.mycluster.myopenshift.com</code></p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Press enter or click on the Set button</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup-instructions.png" alt="setup instructions">
+</div>
+</div>
+</li>
+<li>
+<p>The menubar and the rest of this walkthrough guide will be updated with the Managed Zone name and the subdomain as shown below</p>
+<div class="imageblock">
+<div class="content">
+<img src="_images/setup-instructions-complete.png" alt="setup instructions complete">
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_installing_the_demo"><a class="anchor" href="#_installing_the_demo"></a><a class="link" href="#_installing_the_demo">2. Platform Setup</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section is typically performed by a <strong>Platform Engineer</strong> persona.</p>
+</div>
+<div class="paragraph">
+<p>The primary goal of a Platform Engineer is to deploy a Gateway that provides secure communication and is protected and ready for use by application development teams to deploy their service endpoints or APIs. This gateway should be protected and secured with global rate limiting and auth policies.</p>
+</div>
+<div class="paragraph">
+<p>In this demo, the deployment script uses ArgoCD to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Install Red Hat Connectivity Link (Kuadrant) operator</p>
+</li>
+<li>
+<p>Setup a ManagedZone for DNS configuration.</p>
+</li>
+<li>
+<p>Define a TLS issuer for TLS certificates for secure communication to the Gateways.</p>
+</li>
+<li>
+<p>Create a Gateway (based on Istio gateway) with a wildcard hostname based on the root domain.</p>
+</li>
+<li>
+<p>Kuadrant Custom Resources (CRs) including various policies: DNS, TLS.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_get_the_deployment_scripts"><a class="anchor" href="#_get_the_deployment_scripts"></a><a class="link" href="#_get_the_deployment_scripts">2.1. Get the deployment scripts</a></h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Login to your OpenShift cluster as cluster-admin (because a number of operators will need to be installed)</p>
+</li>
+<li>
+<p>Click on the username on the top right hand, and then click on <strong>Copy login command</strong>. This will open another tab and you will need to login again</p>
+</li>
+<li>
+<p>Click on <strong>Display token</strong> link, and copy the command under <strong>Log in with this token</strong>. This will look like this</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell script hljs" data-lang="shell script">oc login --token=&lt;token&gt; --server=&lt;server&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Clone the ansible script</p>
+<div class="listingblock">
+<div class="content">
+<pre>git clone https://github.com/rh-soln-pattern-connectivity-link/connectivity-link-ansible</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open the <code>inventories/inventory.template</code> file and update the variables. Save the file.</p>
+<details>
+<summary class="title"><span class="underline">Click for details of inventory.template file</span></summary>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">ocp4_workload_connectivity_link_aws_access_key=&lt;AWS_ACCESS_KEY_ID&gt;
+ocp4_workload_connectivity_link_aws_secret_access_key=&lt;AWS_SECRET_ACCESS_KEY&gt;
+
+# E.g.: sandbox902.opentlc.com
+ocp4_workload_connectivity_link_main_domain=&lt;AWS ROUTE53 ROOT DOMAIN&gt;
+
+ocp4_workload_connectivity_link_aws_managed_zone_region=&lt;Managed Zone region - default region of your AWS setup&gt;
+# E.g.: eu-central-1
+
+ocp4_workload_connectivity_link_ingress_gateway_tls_issuer_email=&lt;your  address email for letsencrypt&gt;
+
+ocp4_workload_connectivity_link_gateway_geo_code=&lt;gateway geo code&gt;
+# E.g.: EU or US</code></pre>
+</div>
+</div>
+</div>
+</details>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_run_the_deployment_scripts"><a class="anchor" href="#_run_the_deployment_scripts"></a><a class="link" href="#_run_the_deployment_scripts">2.2. Run the deployment scripts</a></h3>
+<div class="paragraph">
+<p><strong>Prerequisites checklist</strong></p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Before running the following Ansible script, check if you have done these prerequisites</p>
+</div>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><input type="checkbox" data-item-complete="0"> The inventory file reflects the correct AWS credentials, Root zone details and region etc.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Run the Ansible script which will setup the RHCL Operator, Cert Manager Operator, OpenShift Service Mesh Operator, Istio CR and other Kuadrant system workloads</p>
+</div>
+<div class="listingblock console-input">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell script hljs" data-lang="shell script">cd operator-setup
+ansible-playbook playbooks/ocp4_workload_connectivity_link.yml -e ACTION=create -i inventories/inventory.template</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_whats_next"><a class="anchor" href="#_whats_next"></a><a class="link" href="#_whats_next">2.3. What&#8217;s next</a></h3>
+<div class="paragraph">
+<p>In the next section, we&#8217;ll go through the <strong>Platform Engineer&#8217;s Workflow</strong></p>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="02-architecture.html" class="query-params-link">2. Architecture</a></span>
+  <span class="next"><a href="03.1-platform.html" class="query-params-link">3.2. Platform Engineer workflow</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>  </div>
+</main>
+</div>
+<footer class="footer" style="justify-content: center;">
+  <div>
+    <img src="./_images/red_hat_logo.png" height="40px" alt="Cloud Native Architecture Solution Patterns" href="https://redhat.com">
+  </div>
+</footer>
+<script defer src="../_/js/vendor/clipboard.js"></script>
+<script defer src="../_/js/site.js"></script>
+<script defer src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

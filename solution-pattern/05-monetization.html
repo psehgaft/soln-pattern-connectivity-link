@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Monetization workshop: from traffic to usage :: Open Demo days | Connectivity Link Workshop</title>
+    <link rel="canonical" href="https://solutionpatterns.io/solution-pattern/05-monetization.html">
+    <link rel="prev" href="04-workshop.html">
+    <link rel="next" href="developer-resources.html">
+    <meta name="generator" content="Antora 3.0.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;700&family=Red+Hat+Mono:wght@400;700&family=Red+Hat+Text:wght@400;700&display=swap">
+    <link rel="stylesheet" href="../_/css/site.css">
+<link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<a class="skip-link" href="#content">Skip to content</a>
+<header class="header">
+  <nav class="navbar" aria-label="Open Demo days">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="../index.html" aria-label="Connectivity Link Workshop home">
+        <img src="https://raw.githubusercontent.com/san985tos/automation_governance_model/main/docs/images/open-demo-days.png"
+             alt="Open Demo days — Open Source Labs" height="36">
+        <span class="site-title">Connectivity Link Workshop</span>
+      </a>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="../index.html">Solution Pattern</a>
+        <a class="navbar-item" href="../solution-pattern/master/04-workshop.html">Workshop</a>
+        <a class="navbar-item" href="../solution-pattern/master/05-monetization.html">Monetization labs</a>
+        <a class="navbar-item" href="https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop">GitHub repository</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="solution-pattern" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="index.html" class=" query-params-link">Connectivity Link</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">1. Home page</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#use-cases">1.1 Use cases</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#_the_story_behind_this_solution_pattern">1.2 The story behind this solution pattern</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="index.html#_the_solution">1.3 The solution</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="02-architecture.html">2. Architecture</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-architecture.html#tech_stack">2.1. Technology stack</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-architecture.html#in_depth">2.2. An in-depth look at the solution&#8217;s architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="02-architecture.html#more_tech">2.3. More about the technology stack</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="03-demo.html">3. See the Solution in Action</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03-demo.html#_prerequisites">3.1. Pre-requisites</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.1-platform.html">3.2. Platform Engineer workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.2-developer.html">3.3. Developer workflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="03.3-observability.html">3.4. Monitoring &amp; Observability</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="04-workshop.html">4. Hands-on Workshop</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_learning_objectives">4.1. Learning objectives</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_delivery_plan">4.2. Delivery plan</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="04-workshop.html#_lab_files">4.3. Lab files</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="05-monetization.html">5. Monetization Workshop</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="developer-resources.html">6. Developer Resources</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text"><a href="https://redhat-solution-patterns.github.io/solution-patterns/patterns.html" target="_blank" rel="noopener">Explore Red Hat Solution Patterns</a></span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">Connectivity Link</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>    </div>
+  </aside>
+</div>
+<main class="article" id="content">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Connectivity Link</a></li>
+    <li><a href="05-monetization.html">5. Monetization Workshop</a></li>
+  </ul>
+</nav>
+</div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Monetization workshop: from traffic to usage</h1>
+<div class="sect1">
+<h2 id="_purpose"><a class="anchor" href="#_purpose"></a><a class="link" href="#_purpose">1. Purpose</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This module adds monetization patterns to the Connectivity Link labs. It distinguishes an operational usage estimate from a durable billable event and compares four routes: ConfigMap/Grafana, Lago, Platform Billing Operator, and Moesif.</p>
+</div>
+<div class="paragraph">
+<p>See the complete <a href="https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop/monetization" target="_blank" rel="noopener">step-by-step monetization guide</a>, including Grafana dashboard files and scripts.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_four_options"><a class="anchor" href="#_four_options"></a><a class="link" href="#_four_options">2. Four options</a></h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5714%;">
+<col style="width: 28.5715%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">What participants build</th>
+<th class="tableblock halign-left valign-top">Best fit</th>
+<th class="tableblock halign-left valign-top">Key boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ConfigMap + Grafana</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Request-rate, status-code, and sample estimate panels based on Istio metrics.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A basic usage demonstration and operational visibility.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An estimate only; scraped counters are not an invoice ledger.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lago</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A billable metric and five synthetic usage events with unique transaction IDs.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subscription and event-based usage billing.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A durable asynchronous producer must map trusted usage to customers and retry safely.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Platform Billing Operator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A PriceBook and Plan reconciled into Kuadrant policies in an isolated evaluation cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenShift AI Models-as-a-Service billing and enforcement.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The linked 0.0.1 package is an experimental evaluation path; verify maturity and compatibility.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Moesif</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A test Envoy WASM capture integration and meter in a non-production environment.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API analytics, metering, quotas, and billing workflows.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The plugin is external to Connectivity Link; validate mesh and gateway compatibility.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lab_sequence"><a class="anchor" href="#_lab_sequence"></a><a class="link" href="#_lab_sequence">3. Lab sequence</a></h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Basic dashboard:</strong> verify the <code>istio_requests_total</code> series, apply a ConfigMap with an illustrative rate, render the dashboard, and send test requests.</p>
+</li>
+<li>
+<p><strong>Lago:</strong> create a test metric/subscription, set a test API key outside Git, emit five uniquely identified events, and inspect usage in the test tenant.</p>
+</li>
+<li>
+<p><strong>Platform Billing Operator:</strong> review package/support status, apply a future-dated PriceBook and Plan in an isolated cluster, and inspect compilation conditions and policies.</p>
+</li>
+<li>
+<p><strong>Moesif:</strong> identify Gateway proxy labels, render the WASM plugin without committing the Application ID, send test traffic, and inspect captured events.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_expected_outcome"><a class="anchor" href="#_expected_outcome"></a><a class="link" href="#_expected_outcome">4. Expected outcome</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Participants can select a pattern based on whether the goal is visibility, usage-event billing, AI inference billing, or API analytics and monetization. They can explain how identity, retries, duplicate prevention, data retention, masking, and customer disputes change the design.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Do not treat Grafana estimates as billing truth. Use test customer/subscription/account data for Lago, Platform Billing Operator, and Moesif exercises. Never commit API keys or customer traffic. Review body capture, data residency, retention, and privacy controls before integrating real API telemetry.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references"><a class="anchor" href="#_references"></a><a class="link" href="#_references">5. References</a></h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.kuadrant.io/1.2.x/kuadrant-operator/doc/overviews/rate-limiting/">Kuadrant RateLimitPolicy</a></p>
+</li>
+<li>
+<p><a href="https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/">Grafana dashboard import</a></p>
+</li>
+<li>
+<p><a href="https://getlago.com/docs/api-reference/events/usage">Lago usage events</a></p>
+</li>
+<li>
+<p><a href="https://docs.getlago.com/guide/billable-metrics/aggregation-types/count">Lago COUNT billable metric</a></p>
+</li>
+<li>
+<p><a href="https://artifacthub.io/packages/olm/community-operators/platform-billing-operator/0.0.1">Platform Billing Operator 0.0.1</a></p>
+</li>
+<li>
+<p><a href="https://github.com/rdwj/platform-billing-operator">Platform Billing Operator source and guide</a></p>
+</li>
+<li>
+<p><a href="https://www.moesif.com/docs/server-integration/envoy-wasm-plugin/">Moesif Envoy WASM guide</a></p>
+</li>
+<li>
+<p><a href="https://github.com/Moesif/moesif-envoy-wasm-plugin/tree/master/examples/istio">Moesif Istio example</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="04-workshop.html" class="query-params-link">4. Hands-on Workshop</a></span>
+  <span class="next"><a href="developer-resources.html" class="query-params-link">6. Developer Resources</a></span>
+</nav>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>  </div>
+</main>
+</div>
+<footer class="footer" style="justify-content: center;">
+  <div>
+    <img src="./_images/red_hat_logo.png" height="40px" alt="Cloud Native Architecture Solution Patterns" href="https://redhat.com">
+  </div>
+</footer>
+<script defer src="../_/js/vendor/clipboard.js"></script>
+<script defer src="../_/js/site.js"></script>
+<script defer src="../_/js/vendor/highlight.js"></script>
+  </body>
+</html>
