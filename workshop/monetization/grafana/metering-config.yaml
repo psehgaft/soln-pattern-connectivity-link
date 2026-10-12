@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: connectivity-link-metering
+  namespace: connectivity-link-workshop
+data:
+  # Illustrative workshop tariff only; never a production price.
+  price_per_1000_successful_requests_usd: "0.25"

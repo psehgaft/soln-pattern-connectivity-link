@@ -1,18 +1,17 @@
 = Workshop: Connect, Secure, Protect, and Observe with Connectivity Link
-:page-aliases: workshop.adoc
 :sectnums:
 :sectlinks:
 :doctype: book
 
 == Purpose
 
-This hands-on workshop guides platform engineers and application developers through a complete service-onboarding path using Gateway API and Connectivity Link policies. Participants deploy a sample API, expose it through a Gateway, authenticate callers, apply per-user rate limits, and inspect policy status.
+This hands-on workshop guides platform engineers and application developers through service onboarding using Gateway API and Connectivity Link policies. Participants deploy an API, expose it through a Gateway, authenticate callers, apply per-user limits, inspect policy status, and explore monetization options.
 
-The repeatable manifests, verification script, prerequisites, and instructor notes are maintained in the repository's [Workshop guide^](https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop).
+The workshop uses the visual Showroom theme used by Open Demo days. Ready-to-apply manifests, scripts, prerequisites, and instructor notes live in the [Workshop guide^](https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop).
 
 [NOTE]
 ====
-The application labs require an OpenShift/Kubernetes cluster with Connectivity Link (Kuadrant components) and a Gateway API provider already installed. Installing operators, configuring a DNS provider, and issuing public certificates require cluster- and environment-specific decisions. The guide identifies those prerequisites and links to supported product documentation.
+The application labs require an OpenShift/Kubernetes cluster with Connectivity Link (Kuadrant components) and a Gateway API provider installed and healthy. Operator installation, public DNS, certificates, and billing credentials are environment-specific and must be prepared before attendees start.
 ====
 
 == Learning objectives
@@ -21,10 +20,10 @@ After the workshop, participants can:
 
 * Explain the roles of GatewayClass, Gateway, HTTPRoute, and policy resources.
 * Route HTTP traffic to a Kubernetes Service.
-* Require API-key authentication and return distinct 401/403 responses.
+* Require API-key authentication and observe 401 and 403 responses.
 * Apply per-identity rate limits and observe 429 responses.
 * Read status conditions and troubleshoot common attachment and policy issues.
-* Describe how TLS, DNS automation, observability, and multi-cluster routing extend the pattern.
+* Compare usage visibility, billable event ingestion, AI inference billing, and API analytics.
 
 == Delivery plan
 
@@ -42,36 +41,37 @@ After the workshop, participants can:
 
 |2. Secure
 |Apply an AuthPolicy and two training API keys.
-|Requests without a key return 401; valid callers receive 200.
+|No key returns 401; valid callers receive 200.
 
 |3. Protect
 |Apply authenticated RateLimitPolicy rules.
-|Alice is limited to 5 requests per 10 seconds; Bob to 2.
+|Alice and Bob have different request limits.
 
 |4. Platform guardrails
-|Apply a Gateway-level default-deny policy and inspect policy scope/status.
+|Apply a Gateway-level default-deny policy and inspect scope/status.
 |Unprotected routes inherit the platform guardrail.
 
-|5. Extend
-|Discuss or demonstrate TLS, DNS, dashboards, and multi-cluster.
-|Participants can map each capability to its prerequisites and policy.
+|5. Monetize
+|Compare a Grafana estimate with Lago, Platform Billing Operator, and Moesif.
+|Participants distinguish monitoring from durable billing events.
 
 |6. Verify and clean up
-|Run the verification script and delete the lab namespace.
-|The expected behavior is reproducible and lab resources are removed.
+|Run verification scripts and delete lab resources.
+|Expected behavior is reproducible and temporary resources are removed.
 |===
 
 == Before the session
 
-Use the [Workshop guide^](https://github.com/psehgaft/soln-pattern-connectivity-link/blob/main/workshop/README.md) to prepare the cluster. Platform operators must complete the installation and health checks before attendees start. For the platform workflow, see xref:03.1-platform.adoc[Platform Engineer workflow].
+Use the [Workshop guide^](https://github.com/psehgaft/soln-pattern-connectivity-link/blob/main/workshop/README.md) to prepare the cluster. Platform operators complete installation and health checks before attendees begin. For the platform workflow, see xref:03.1-platform.adoc[Platform Engineer workflow].
 
 == Lab files
 
-The guide includes ready-to-apply YAML under `workshop/manifests/` and a `workshop/scripts/verify.sh` script. It provides commands and expected results for each exercise.
+The repository includes ready-to-apply YAML under `workshop/manifests/`, verification scripts under `workshop/scripts/`, and the four monetization options under `workshop/monetization/`.
 
 * xref:03.2-developer.adoc[Developer workflow] provides an additional OIDC onboarding scenario.
 * xref:03.3-observability.adoc[Monitoring and observability] covers dashboards and the console plugin.
+* xref:05-monetization.adoc[Monetization labs] explains the four usage and billing patterns.
 
 == Instructor guidance
 
-Allow approximately three hours. Keep the sample API keys confined to the isolated workshop namespace, and do not use the training values in a shared or production environment. DNS and public TLS should be optional extension labs unless a delegated test zone and issuer are already available.
+Allow approximately three hours for the core workshop. Add time for the monetization labs based on the selected integration. Keep sample API keys and test billing data confined to isolated environments. Public DNS, production ACME, payment processors, and real customer traffic are outside the core attendee setup.

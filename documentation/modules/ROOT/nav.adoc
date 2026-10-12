@@ -18,7 +18,8 @@
 ** xref:04-workshop.adoc#_learning_objectives[{module}.{counter:submodule4}. Learning objectives]
 ** xref:04-workshop.adoc#_delivery_plan[{module}.{counter:submodule4}. Delivery plan]
 ** xref:04-workshop.adoc#_lab_files[{module}.{counter:submodule4}. Lab files]
-** xref:04-workshop.adoc#_instructor_guidance[{module}.{counter:submodule4}. Instructor guidance]
+
+* xref:05-monetization.adoc[{counter:module}. Monetization Workshop]
 
 * xref:developer-resources.adoc[{counter:module}. Developer Resources]
 
