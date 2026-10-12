@@ -36,7 +36,7 @@ Suggested delivery: 3 hours, including breaks and discussion. Use the files in `
 - OpenShift 4.16+ or a Kubernetes cluster supported by the installed RHCL release.
 - `oc` (or `kubectl`), `curl`, and permission to create a namespace, Deployment, Service, Gateway, HTTPRoute, Secret, AuthPolicy, and RateLimitPolicy.
 - RHCL/Kuadrant CRDs and controllers installed, including AuthPolicy and RateLimitPolicy.
-- A Gateway API provider and a GatewayClass named `istio`. If your environment uses another class, edit `manifests/20-gateway-route.yaml`.
+- A Gateway API provider and a GatewayClass named `istio`. If your environment uses another class, edit `workshop/manifests/20-gateway-route.yaml`.
 - Cluster-admin/operator tasks completed before attendees arrive. A live DNS zone and certificate issuer are optional for this base exercise.
 
 Check the APIs and class:
@@ -67,7 +67,7 @@ The default test hostname is `api.toystore.test`. It does not need public DNS: t
 
 ## 1. Connect an application
 
-Inspect `manifests/10-app.yaml` and `manifests/20-gateway-route.yaml`.
+Inspect `workshop/manifests/10-app.yaml` and `workshop/manifests/20-gateway-route.yaml`.
 
 1. Identify which team owns the Deployment/Service, Gateway, and HTTPRoute.
 2. Apply the manifests as shown above.
@@ -113,7 +113,7 @@ Alice is allowed 5 requests per 10 seconds and Bob 2 requests per 10 seconds. Th
 
 ## 4. Platform default-deny policy
 
-Apply `manifests/50-gateway-default-deny.yaml`. It creates a second route with no application AuthPolicy. The Gateway policy protects that route by default, while the Toy Store route keeps its more-specific application policy.
+Apply `workshop/manifests/50-gateway-default-deny.yaml`. It creates a second route with no application AuthPolicy. The Gateway policy protects that route by default, while the Toy Store route keeps its more-specific application policy.
 
 ```sh
 kubectl apply -n "$NS" -f workshop/manifests/50-gateway-default-deny.yaml
