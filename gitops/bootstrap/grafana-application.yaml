@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/psehgaft/soln-pattern-connectivity-link.git
     targetRevision: main
-    path: gitops/monetization/grafana
+    path: workshop/monetization/grafana
   destination:
     server: https://kubernetes.default.svc
     namespace: connectivity-link-workshop
