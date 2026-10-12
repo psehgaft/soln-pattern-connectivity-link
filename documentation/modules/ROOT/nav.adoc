@@ -21,6 +21,8 @@
 
 * xref:05-monetization.adoc[{counter:module}. Monetization Workshop]
 
+* xref:06-gitops.adoc[{counter:module}. GitOps deployment]
+
 * xref:developer-resources.adoc[{counter:module}. Developer Resources]
 
 * https://redhat-solution-patterns.github.io/solution-patterns/patterns.html[Explore Red Hat Solution Patterns^]
