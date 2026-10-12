@@ -1,0 +1,22 @@
+apiVersion: kuadrant.io/v1
+kind: RateLimitPolicy
+metadata:
+  name: toystore
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: toystore
+  limits:
+    alice-limit:
+      rates:
+        - limit: 5
+          window: 10s
+      when:
+        - predicate: "auth.identity.userid == 'alice'"
+    bob-limit:
+      rates:
+        - limit: 2
+          window: 10s
+      when:
+        - predicate: "auth.identity.userid == 'bob'"

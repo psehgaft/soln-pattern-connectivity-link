@@ -1,0 +1,28 @@
+apiVersion: kuadrant.io/v1
+kind: AuthPolicy
+metadata:
+  name: toystore
+spec:
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: toystore
+  rules:
+    authentication:
+      api-key-users:
+        apiKey:
+          selector:
+            matchLabels:
+              app: toystore
+          allNamespaces: true
+        credentials:
+          authorizationHeader:
+            prefix: APIKEY
+    response:
+      success:
+        filters:
+          identity:
+            json:
+              properties:
+                userid:
+                  selector: auth.identity.metadata.annotations.secret\.kuadrant\.io/user-id

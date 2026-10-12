@@ -1,19 +1,13 @@
 runtime:
   cache_dir: ./.cache/antora
-
 site:
-  title: Solution Patterns from Red Hat
+  title: Open Demo days | Connectivity Link Workshop
   url: https://solutionpatterns.io
   start_page: solution-pattern::index.adoc
-  keys:
-    google_analytics: 'G-TKK0SMEFQH'  
-  
-
 content:
   sources:
     - url: ./
       start_path: documentation
-
 asciidoc:
   attributes:
     release-version: master
@@ -21,11 +15,10 @@ asciidoc:
   extensions:
     - ./lib/tab-block.js
     - ./lib/remote-include-processor.js
-
 ui:
   bundle:
-    url: https://github.com/redhat-solution-patterns/course-ui/releases/download/v0.1.16/ui-bundle.zip
-    snapshot: true
+    url: https://github.com/rhpds/rhdp_showroom_theme/releases/download/v2.0.2/ui-bundle.zip
+    snapshot: false
   supplemental_files: ./supplemental-ui
 output:
   dir: ./gh-pages

@@ -1,0 +1,18 @@
+apiVersion: billing.opendatahub.io/v1alpha1
+kind: Plan
+metadata:
+  name: workshop-standard
+  namespace: connectivity-link-workshop
+spec:
+  limits:
+    requestsPerMinute: 60
+    tokensPerMinute: 10000
+    tokensPerDay: 100000
+  modelScopes:
+    - "llama-3-*"
+    - "granite-*"
+  targetRef:
+    group: gateway.networking.k8s.io
+    kind: Gateway
+    name: workshop
+  priceBookRef: pb-workshop

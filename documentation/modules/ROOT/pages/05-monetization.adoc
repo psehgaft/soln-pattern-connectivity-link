@@ -1,0 +1,64 @@
+= Monetization workshop: from traffic to usage
+:sectnums:
+:sectlinks:
+:doctype: book
+
+== Purpose
+
+This module adds monetization patterns to the Connectivity Link labs. It distinguishes an operational usage estimate from a durable billable event and compares four routes: ConfigMap/Grafana, Lago, Platform Billing Operator, and Moesif.
+
+See the complete https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop/monetization[step-by-step monetization guide^], including Grafana dashboard files and scripts.
+
+== Four options
+
+[cols="1,2,2,2"]
+|===
+|Option |What participants build |Best fit |Key boundary
+
+|ConfigMap + Grafana
+|Request-rate, status-code, and sample estimate panels based on Istio metrics.
+|A basic usage demonstration and operational visibility.
+|An estimate only; scraped counters are not an invoice ledger.
+
+|Lago
+|A billable metric and five synthetic usage events with unique transaction IDs.
+|Subscription and event-based usage billing.
+|A durable asynchronous producer must map trusted usage to customers and retry safely.
+
+|Platform Billing Operator
+|A PriceBook and Plan reconciled into Kuadrant policies in an isolated evaluation cluster.
+|OpenShift AI Models-as-a-Service billing and enforcement.
+|The linked 0.0.1 package is an experimental evaluation path; verify maturity and compatibility.
+
+|Moesif
+|A test Envoy WASM capture integration and meter in a non-production environment.
+|API analytics, metering, quotas, and billing workflows.
+|The plugin is external to Connectivity Link; validate mesh and gateway compatibility.
+|===
+
+== Lab sequence
+
+. *Basic dashboard:* verify the `istio_requests_total` series, apply a ConfigMap with an illustrative rate, render the dashboard, and send test requests.
+. *Lago:* create a test metric/subscription, set a test API key outside Git, emit five uniquely identified events, and inspect usage in the test tenant.
+. *Platform Billing Operator:* review package/support status, apply a future-dated PriceBook and Plan in an isolated cluster, and inspect compilation conditions and policies.
+. *Moesif:* identify Gateway proxy labels, render the WASM plugin without committing the Application ID, send test traffic, and inspect captured events.
+
+== Expected outcome
+
+Participants can select a pattern based on whether the goal is visibility, usage-event billing, AI inference billing, or API analytics and monetization. They can explain how identity, retries, duplicate prevention, data retention, masking, and customer disputes change the design.
+
+[WARNING]
+====
+Do not treat Grafana estimates as billing truth. Use test customer/subscription/account data for Lago, Platform Billing Operator, and Moesif exercises. Never commit API keys or customer traffic. Review body capture, data residency, retention, and privacy controls before integrating real API telemetry.
+====
+
+== References
+
+* https://docs.kuadrant.io/1.2.x/kuadrant-operator/doc/overviews/rate-limiting/[Kuadrant RateLimitPolicy]
+* https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/[Grafana dashboard import]
+* https://getlago.com/docs/api-reference/events/usage[Lago usage events]
+* https://docs.getlago.com/guide/billable-metrics/aggregation-types/count[Lago COUNT billable metric]
+* https://artifacthub.io/packages/olm/community-operators/platform-billing-operator/0.0.1[Platform Billing Operator 0.0.1]
+* https://github.com/rdwj/platform-billing-operator[Platform Billing Operator source and guide]
+* https://www.moesif.com/docs/server-integration/envoy-wasm-plugin/[Moesif Envoy WASM guide]
+* https://github.com/Moesif/moesif-envoy-wasm-plugin/tree/master/examples/istio[Moesif Istio example]

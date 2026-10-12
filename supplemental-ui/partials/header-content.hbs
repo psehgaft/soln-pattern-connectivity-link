@@ -1,109 +1,22 @@
-
 <header class="header">
-  <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function () { 
-      const urlParams = new URLSearchParams(window.location.search);
-      const managedzone = urlParams.get('AWSROOTZONE');
-      const subdomain = urlParams.get('OPENSHIFTSUBDOMAIN'); 
-      if (managedzone) {
-        showManagedZone( managedzone, subdomain);
-      }
-      else {
-        showManagedZoneForm(subdomain);
-      }
-    } );
-
-
-    function showManagedZone( managedzone, subdomain) {
-      document.getElementById('navbar-form-empty').style.display = "none";
-      document.getElementById('navbar-form-filled').style.display = "flex";
-      document.getElementById('managedZoneDisplay').textContent = "AWS Root Zone: " + managedzone;
-      document.getElementById('subdomainDisplay').textContent = "OpenShift Subdomain: " + subdomain; 
-    }
-
-    function showManagedZoneForm( subdomain ) {
-      document.getElementById('navbar-form-empty').style.display = "flex";
-      document.getElementById('navbar-form-filled').style.display = "none";
-      document.getElementById('subdomain').value = subdomain; 
-
-    }
-
-    function goWithManagedZone() {
-      elManagedZoneInput = document.getElementById('managedzone');
-      elSubdomainInput = document.getElementById('subdomain');
-      window.location.search = ('&AWSROOTZONE=' + elManagedZoneInput.value  + '&OPENSHIFTSUBDOMAIN=' + elSubdomainInput.value);
-    }
-
-    function recycle() {
-      document.getElementById('managedzone').value='';
-      document.getElementById('subdomain').value='';
-      window.location.search = ('');
-    }
-
-
-  </script>
-  <nav class="navbar">
+  <nav class="navbar" aria-label="Open Demo days">
     <div class="navbar-brand">
-      <a class="navbar-item" style="font-size: 20px; color: white" href="{{{or site.url (or siteRootUrl siteRootPath)}}}">
-        <img src="{{uiRootPath}}/img/logo.png" height="35px" alt="Solution Patterns">&nbsp; {{site.title}}</a>
-      <button class="navbar-burger" data-target="topbar-nav">
-        <span></span>
-        <span></span>
-        <span></span>
+      <a class="navbar-item" href="{{siteRootPath}}/index.html" aria-label="Connectivity Link Workshop home">
+        <img src="https://raw.githubusercontent.com/san985tos/automation_governance_model/main/docs/images/open-demo-days.png"
+             alt="Open Demo days — Open Source Labs" height="36">
+        <span class="site-title">Connectivity Link Workshop</span>
+      </a>
+      <button class="navbar-burger" data-target="topbar-nav" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
       </button>
     </div>
     <div id="topbar-nav" class="navbar-menu">
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="#">Architectures &amp; Patterns</a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="https://www.redhat.com/architect/portfolio/" target="_blank">Portfolio Architecture&nbsp; </a>
-            <a class="navbar-item" href="https://redhat-solution-patterns.github.io/solution-patterns/patterns.html"  target="_blank">Solution Patterns </a>
-            <a class="navbar-item" href="https://validatedpatterns.io/" target="_blank">Validated Patterns&nbsp;</a>
-            <a class="navbar-item" href="https://catalog.redhat.com/solutions" target="_blank">Ecosystem Solutions&nbsp;</a>
-          </div>
-        </div>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link" href="#">Resources</a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" target="_blank" href="https://developers.redhat.com">Red Hat Developers</a>
-            <a class="navbar-item" target="_blank" href="https://developers.redhat.com/app-dev-platform">App Dev Platform</a>
-            <a class="navbar-item" target="_blank" href="https://www.redhat.com/en/products/application-foundations">Red Hat Application Services</a>
-          </div>
-        </div>
-
-          <a class="navbar-item" target="_blank" href="https://github.com/redhat-solution-patterns/redhat-solution-patterns.github.io/issues">Feedback</a>
-          <a class="navbar-item" target="_blank" href="https://redhat-solution-patterns.github.io/solution-patterns/contributors-guide.html">Contribute</a>
-
-          <div class="navbar-item" >         
-              <div id="navbar-form-empty">
-                <span >
-                  <span>
-                    &nbsp;
-                    <i style="color: orange;" class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                  </span>
-                  Your Workshop Environment
-                <form action="javascript:void(0);" onsu>
-                  <input size="20" id="managedzone" type="text" placeholder="AWS ROOT ZONE">
-                  <input size="20" id="subdomain" type="text" placeholder="OPENSHIFT SUBDOMAIN">
-                  <button type="hidden" onclick="goWithManagedZone();">Set</button>
-                </form>
-                </span>
-              </div>
-        
-              <div  id="navbar-form-filled" style="display: none;">
-                <span>
-                <span>
-                  Your Workshop Environment
-                    <span class="navbar-text" style="margin-left: 1rem; margin-right: 1rem;">
-                    <i alt="Clear details" title="Clear details" onclick="recycle();" style="color: green;" class="fa fa-recycle" aria-hidden="true"></i>
-                    <br><span  id="managedZoneDisplay"></span> <span>|</span>
-                <span id="subdomainDisplay"></span>
-              </div>
-          </div>
+        <a class="navbar-item" href="{{siteRootPath}}/index.html">Solution Pattern</a>
+        <a class="navbar-item" href="{{siteRootPath}}/solution-pattern/master/04-workshop.html">Workshop</a>
+        <a class="navbar-item" href="{{siteRootPath}}/solution-pattern/master/05-monetization.html">Monetization labs</a>
+        <a class="navbar-item" href="https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop">GitHub repository</a>
       </div>
     </div>
   </nav>
 </header>
-
