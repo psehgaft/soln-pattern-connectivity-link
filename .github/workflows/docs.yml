@@ -20,6 +20,7 @@ jobs:
           antora_playbook: site.yml
       - name: "Publish Antora assets from a GitHub Pages compatible path"
         run: |
+          sudo chown -R "$(id -u):$(id -g)" "${{ env.SITE_DIR }}"
           mkdir -p "${{ env.SITE_DIR }}/antora-assets"
           cp -R "${{ env.SITE_DIR }}/_/"* "${{ env.SITE_DIR }}/antora-assets/"
           find "${{ env.SITE_DIR }}" -type f -name '*.html' -exec sed -i \
