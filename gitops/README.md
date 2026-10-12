@@ -36,7 +36,7 @@ oc apply -f gitops/bootstrap/application.yaml
 oc get application connectivity-link-workshop -n openshift-gitops -w
 ~~~
 
-The Application points to <code>gitops/workshop</code>. Its Kustomize entrypoint reuses the manifests in <code>workshop/manifests/</code>, so the workshop YAML has one source of truth. Argo CD creates the <code>connectivity-link-workshop</code> namespace, labels it for the default OpenShift GitOps instance, and continuously reconciles the resources.
+The Application points to <code>workshop</code>. Its Kustomize entrypoint, <code>workshop/kustomization.yaml</code>, applies the manifests in <code>workshop/manifests/</code>, so the workshop YAML has one source of truth. Argo CD creates the <code>connectivity-link-workshop</code> namespace, labels it for the default OpenShift GitOps instance, and continuously reconciles the resources.
 
 The Application enables automated sync, pruning, and self-healing:
 
