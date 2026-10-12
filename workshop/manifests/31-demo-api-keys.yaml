@@ -1,0 +1,26 @@
+# Training-only credentials. Never use these values outside an isolated lab.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: alice-key
+  labels:
+    authorino.kuadrant.io/managed-by: authorino
+    app: toystore
+  annotations:
+    secret.kuadrant.io/user-id: alice
+type: Opaque
+stringData:
+  api_key: IAMALICE
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: bob-key
+  labels:
+    authorino.kuadrant.io/managed-by: authorino
+    app: toystore
+  annotations:
+    secret.kuadrant.io/user-id: bob
+type: Opaque
+stringData:
+  api_key: IAMBOB

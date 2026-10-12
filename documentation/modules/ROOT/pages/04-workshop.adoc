@@ -1,13 +1,77 @@
-= Solution Patterns: Connect, Secure and Protect with Red Hat Connectivity Link
+= Workshop: Connect, Secure, Protect, and Observe with Connectivity Link
+:page-aliases: workshop.adoc
 :sectnums:
 :sectlinks:
 :doctype: book
 
-= Workshop
+== Purpose
 
-what is this workshop and what will be learned
+This hands-on workshop guides platform engineers and application developers through a complete service-onboarding path using Gateway API and Connectivity Link policies. Participants deploy a sample API, expose it through a Gateway, authenticate callers, apply per-user rate limits, and inspect policy status.
 
-== Installing the workshop environment
-=== Before getting started
-=== Installing the environment
-== Delivering the workshop
+The repeatable manifests, verification script, prerequisites, and instructor notes are maintained in the repository's [Workshop guide^](https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop).
+
+[NOTE]
+====
+The application labs require an OpenShift/Kubernetes cluster with Connectivity Link (Kuadrant components) and a Gateway API provider already installed. Installing operators, configuring a DNS provider, and issuing public certificates require cluster- and environment-specific decisions. The guide identifies those prerequisites and links to supported product documentation.
+====
+
+== Learning objectives
+
+After the workshop, participants can:
+
+* Explain the roles of GatewayClass, Gateway, HTTPRoute, and policy resources.
+* Route HTTP traffic to a Kubernetes Service.
+* Require API-key authentication and return distinct 401/403 responses.
+* Apply per-identity rate limits and observe 429 responses.
+* Read status conditions and troubleshoot common attachment and policy issues.
+* Describe how TLS, DNS automation, observability, and multi-cluster routing extend the pattern.
+
+== Delivery plan
+
+[cols="1,2,2"]
+|===
+|Lab |Activity |Expected result
+
+|0. Preflight
+|Check APIs, GatewayClass, controller health, and participant permissions.
+|The environment is ready before app onboarding begins.
+
+|1. Connect
+|Deploy the Toy Store API and apply a Gateway and HTTPRoute.
+|A request to `/toy` returns HTTP 200.
+
+|2. Secure
+|Apply an AuthPolicy and two training API keys.
+|Requests without a key return 401; valid callers receive 200.
+
+|3. Protect
+|Apply authenticated RateLimitPolicy rules.
+|Alice is limited to 5 requests per 10 seconds; Bob to 2.
+
+|4. Platform guardrails
+|Apply a Gateway-level default-deny policy and inspect policy scope/status.
+|Unprotected routes inherit the platform guardrail.
+
+|5. Extend
+|Discuss or demonstrate TLS, DNS, dashboards, and multi-cluster.
+|Participants can map each capability to its prerequisites and policy.
+
+|6. Verify and clean up
+|Run the verification script and delete the lab namespace.
+|The expected behavior is reproducible and lab resources are removed.
+|===
+
+== Before the session
+
+Use the [Workshop guide^](https://github.com/psehgaft/soln-pattern-connectivity-link/blob/main/workshop/README.md) to prepare the cluster. Platform operators must complete the installation and health checks before attendees start. For the platform workflow, see xref:03.1-platform.adoc[Platform Engineer workflow].
+
+== Lab files
+
+The guide includes ready-to-apply YAML under `workshop/manifests/` and a `workshop/scripts/verify.sh` script. It provides commands and expected results for each exercise.
+
+* xref:03.2-developer.adoc[Developer workflow] provides an additional OIDC onboarding scenario.
+* xref:03.3-observability.adoc[Monitoring and observability] covers dashboards and the console plugin.
+
+== Instructor guidance
+
+Allow approximately three hours. Keep the sample API keys confined to the isolated workshop namespace, and do not use the training values in a shared or production environment. DNS and public TLS should be optional extension labs unless a delegated test zone and issuer are already available.

@@ -9,18 +9,16 @@
 ** xref:02-architecture.adoc#more_tech[{module}.{counter:submodule2}. More about the technology stack]
 
 * xref:03-demo.adoc[{counter:module}. See the Solution in Action]
-// ** xref:03-demo.adoc#_demonstration[{module}.{counter:submodule3}. Demonstration]
 ** xref:03-demo.adoc#_prerequisites[{module}.{counter:submodule3}. Pre-requisites]
 ** xref:03.1-platform.adoc[{module}.{counter:submodule3}. Platform Engineer workflow]
 ** xref:03.2-developer.adoc[{module}.{counter:submodule3}. Developer workflow]
 ** xref:03.3-observability.adoc[{module}.{counter:submodule3}. Monitoring & Observability]
 
-
-// * xref:04-workshop.adoc[{counter:module}. Workshop]
-// ** xref:04-workshop.adoc#_installing_the_workshop_environment[{module}.{counter:submodule4}. Installing the workshop environment]
-// *** xref:04-workshop.adoc#_before_getting_started[{module}.{counter:submodule4}. Pre-requisites]
-// *** xref:04-workshop.adoc#_installing_the_environment[{module}.{counter:submodule4}. Installing the environment]
-// ** xref:04-workshop.adoc#deliver_wksp[{module}.{counter:submodule4}. Delivering the workshop]
+* xref:04-workshop.adoc[{counter:module}. Hands-on Workshop]
+** xref:04-workshop.adoc#_learning_objectives[{module}.{counter:submodule4}. Learning objectives]
+** xref:04-workshop.adoc#_delivery_plan[{module}.{counter:submodule4}. Delivery plan]
+** xref:04-workshop.adoc#_lab_files[{module}.{counter:submodule4}. Lab files]
+** xref:04-workshop.adoc#_instructor_guidance[{module}.{counter:submodule4}. Instructor guidance]
 
 * xref:developer-resources.adoc[{counter:module}. Developer Resources]
 
