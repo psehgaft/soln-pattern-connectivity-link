@@ -20,7 +20,8 @@ jobs:
           antora_playbook: site.yml
       - name: "Publish Antora assets from a GitHub Pages compatible path"
         run: |
-          cp -R "${{ env.SITE_DIR }}/_." "${{ env.SITE_DIR }}/antora-assets"
+          mkdir -p "${{ env.SITE_DIR }}/antora-assets"
+          cp -R "${{ env.SITE_DIR }}/_/"* "${{ env.SITE_DIR }}/antora-assets/"
           find "${{ env.SITE_DIR }}" -type f -name '*.html' -exec sed -i \
             -e 's#../_/css/#../antora-assets/css/#g' \
             -e 's#../_/img/#../antora-assets/img/#g' \
