@@ -18,6 +18,8 @@ jobs:
         uses: kameshsampath/antora-site-action@master
         with:
           antora_playbook: site.yml
+      - name: "Keep Antora asset directories on GitHub Pages"
+        run: touch "${{ env.SITE_DIR }}/.nojekyll"
       - name: "Upload generated site"
         uses: actions/upload-artifact@v4
         with:
