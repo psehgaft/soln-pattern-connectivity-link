@@ -261,7 +261,80 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_references"><a class="anchor" href="#_references"></a><a class="link" href="#_references">5. References</a></h2>
+<h2 id="_openshift_validation_lago_grafana_and_the_console"><a class="anchor" href="#_openshift_validation_lago_grafana_and_the_console"></a><a class="link" href="#_openshift_validation_lago_grafana_and_the_console">5. OpenShift validation: Lago, Grafana, and the Console</a></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The workshop environment reached a deployed Lago release on OpenShift using chart <code>2.1.1</code>. API, migration, and frontend images were built to the cluster&#8217;s internal registry. The frontend needed an OpenShift-compatible image because the upstream container attempted to write under its document root and nginx cache, bind to port 80, and create <code>/run/nginx.pid</code>. The reusable Dockerfile prepares writable paths, listens on <code>8080</code>, and stores the PID at <code>/tmp/nginx.pid</code>. The Helm release reported <code>deployed</code>; its migration Job completed, and the frontend Service endpoint was ready on port <code>8080</code>.</p>
+</div>
+<div class="paragraph">
+<p>Use the [environment template](<a href="https://github.com/psehgaft/soln-pattern-connectivity-link/blob/main/workshop/monetization/env/workshop.env.example" class="bare">https://github.com/psehgaft/soln-pattern-connectivity-link/blob/main/workshop/monetization/env/workshop.env.example</a>), [OpenShift build/deploy material](<a href="https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop/monetization/openshift" class="bare">https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop/monetization/openshift</a>), and [Grafana dashboard template](<a href="https://github.com/psehgaft/soln-pattern-connectivity-link/blob/main/workshop/monetization/grafana/api-usage-billing.json" class="bare">https://github.com/psehgaft/soln-pattern-connectivity-link/blob/main/workshop/monetization/grafana/api-usage-billing.json</a>). Namespace, image tags, internal registry, Routes, datasource, metrics job, and example price are cluster-specific values. Never commit an API key or private Lago values file.</p>
+</div>
+<div class="sect2">
+<h3 id="_confirmed_versus_pending"><a class="anchor" href="#_confirmed_versus_pending"></a><a class="link" href="#_confirmed_versus_pending">5.1. Confirmed versus pending</a></h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">State</th>
+<th class="tableblock halign-left valign-top">Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deployed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lago Helm release reported <code>deployed</code>; API, frontend, worker, clock, Redis, and database pods were Running. The migration Job completed, and the frontend Service had a ready endpoint.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Verified separately</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The PostgreSQL 15 <code>getlago/postgres-partman:15.0-alpine</code> test endpoint reported <code>pg_partman</code> default version <code>5.4.0</code>. This does not alone establish which database URI Lago is using.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not end to end</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lago login, API-key creation, and billable-event ingestion were not confirmed. An attempted event request received HTTP 401 because the key was empty/invalid.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Metrics pending</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Grafana&#8217;s Thanos datasource resource was inspected, but a direct Thanos query returned HTTP <code>000</code>. Validate series and labels in Grafana Explore. HTTP <code>000</code> means the request did not complete; it does not establish that usage is zero.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_grafana_api_usage_and_estimated_value"><a class="anchor" href="#_grafana_api_usage_and_estimated_value"></a><a class="link" href="#_grafana_api_usage_and_estimated_value">5.2. Grafana API usage and estimated value</a></h3>
+<div class="paragraph">
+<p>The dashboard route observed in this environment was:
+<a href="https://api-usage-api-observability.apps.cluster-p6pgn.dyn.redhatworkshops.io/d/api-usage-billing/api-usage-and-cost-estimate?orgId=1&amp;from=now-1h&amp;to=now&amp;timezone=browser&amp;refresh=30s" class="bare">https://api-usage-api-observability.apps.cluster-p6pgn.dyn.redhatworkshops.io/d/api-usage-billing/api-usage-and-cost-estimate?orgId=1&amp;from=now-1h&amp;to=now&amp;timezone=browser&amp;refresh=30s</a></p>
+</div>
+<div class="paragraph">
+<p>Use your cluster&#8217;s Grafana route if it differs. The observed datasource was named <code>Thanos</code>, backed by <code><a href="https://thanos-querier.openshift-monitoring.svc:9091" class="bare">https://thanos-querier.openshift-monitoring.svc:9091</a></code>, and selected Grafana instances with <code>dashboards=grafana</code>. The dashboard template exposes the metrics job, reporter, destination service, API user, application, example unit price, and currency. Confirm labels and data in Grafana Explore before interpreting any panel.</p>
+</div>
+<div class="paragraph">
+<p>The price panel estimates <code>request count × example price</code>; it is not Lago-rated usage, an invoice, or a payment record. Do not describe this setup as end-to-end monetization until Lago accepts a test event and displays it against a test subscription.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_connectivity_link_in_the_openshift_console"><a class="anchor" href="#_connectivity_link_in_the_openshift_console"></a><a class="link" href="#_connectivity_link_in_the_openshift_console">5.3. Connectivity Link in the OpenShift Console</a></h3>
+<div class="paragraph">
+<p>The <code>kuadrant-console-plugin</code> was present and running in <code>kuadrant-system</code>, and was enabled through the cluster Console operator. Confirm with:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">oc get console.operator.openshift.io cluster -o json | jq '.spec.plugins'
+oc get consoleplugins.console.openshift.io
+oc get pods -n kuadrant-system | grep kuadrant-console-plugin</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Refresh the OpenShift Console after enabling it. The plugin provides Connectivity Link/Kuadrant views for gateways and policies; it is separate from Grafana&#8217;s monetization dashboard. An embedded custom monetization page inside the OpenShift Console was not implemented or verified.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_references"><a class="anchor" href="#_references"></a><a class="link" href="#_references">6. References</a></h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
