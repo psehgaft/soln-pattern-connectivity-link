@@ -52,6 +52,55 @@ Participants can select a pattern based on whether the goal is visibility, usage
 Do not treat Grafana estimates as billing truth. Use test customer/subscription/account data for Lago, Platform Billing Operator, and Moesif exercises. Never commit API keys or customer traffic. Review body capture, data residency, retention, and privacy controls before integrating real API telemetry.
 ====
 
+
+== OpenShift validation: Lago, Grafana, and the Console
+
+The workshop environment reached a deployed Lago release on OpenShift using chart `2.1.1`. API, migration, and frontend images were built to the cluster's internal registry. The frontend needed an OpenShift-compatible image because the upstream container attempted to write under its document root and nginx cache, bind to port 80, and create `/run/nginx.pid`. The reusable Dockerfile prepares writable paths, listens on `8080`, and stores the PID at `/tmp/nginx.pid`. The Helm release reported `deployed`; its migration Job completed, and the frontend Service endpoint was ready on port `8080`.
+
+Use the [environment template](https://github.com/psehgaft/soln-pattern-connectivity-link/blob/main/workshop/monetization/env/workshop.env.example), [OpenShift build/deploy material](https://github.com/psehgaft/soln-pattern-connectivity-link/tree/main/workshop/monetization/openshift), and [Grafana dashboard template](https://github.com/psehgaft/soln-pattern-connectivity-link/blob/main/workshop/monetization/grafana/api-usage-billing.json). Namespace, image tags, internal registry, Routes, datasource, metrics job, and example price are cluster-specific values. Never commit an API key or private Lago values file.
+
+=== Confirmed versus pending
+
+[cols="1,3"]
+|===
+|State |Evidence
+
+|Deployed
+|Lago Helm release reported `deployed`; API, frontend, worker, clock, Redis, and database pods were Running. The migration Job completed, and the frontend Service had a ready endpoint.
+
+|Verified separately
+|The PostgreSQL 15 `getlago/postgres-partman:15.0-alpine` test endpoint reported `pg_partman` default version `5.4.0`. This does not alone establish which database URI Lago is using.
+
+|Not end to end
+|Lago login, API-key creation, and billable-event ingestion were not confirmed. An attempted event request received HTTP 401 because the key was empty/invalid.
+
+|Metrics pending
+|Grafana's Thanos datasource resource was inspected, but a direct Thanos query returned HTTP `000`. Validate series and labels in Grafana Explore. HTTP `000` means the request did not complete; it does not establish that usage is zero.
+
+|===
+
+=== Grafana API usage and estimated value
+
+The dashboard route observed in this environment was:
+https://api-usage-api-observability.apps.cluster-p6pgn.dyn.redhatworkshops.io/d/api-usage-billing/api-usage-and-cost-estimate?orgId=1&from=now-1h&to=now&timezone=browser&refresh=30s
+
+Use your cluster's Grafana route if it differs. The observed datasource was named `Thanos`, backed by `https://thanos-querier.openshift-monitoring.svc:9091`, and selected Grafana instances with `dashboards=grafana`. The dashboard template exposes the metrics job, reporter, destination service, API user, application, example unit price, and currency. Confirm labels and data in Grafana Explore before interpreting any panel.
+
+The price panel estimates `request count × example price`; it is not Lago-rated usage, an invoice, or a payment record. Do not describe this setup as end-to-end monetization until Lago accepts a test event and displays it against a test subscription.
+
+=== Connectivity Link in the OpenShift Console
+
+The `kuadrant-console-plugin` was present and running in `kuadrant-system`, and was enabled through the cluster Console operator. Confirm with:
+
+[source,sh]
+----
+oc get console.operator.openshift.io cluster -o json | jq '.spec.plugins'
+oc get consoleplugins.console.openshift.io
+oc get pods -n kuadrant-system | grep kuadrant-console-plugin
+----
+
+Refresh the OpenShift Console after enabling it. The plugin provides Connectivity Link/Kuadrant views for gateways and policies; it is separate from Grafana's monetization dashboard. An embedded custom monetization page inside the OpenShift Console was not implemented or verified.
+
 == References
 
 * https://docs.kuadrant.io/1.2.x/kuadrant-operator/doc/overviews/rate-limiting/[Kuadrant RateLimitPolicy]

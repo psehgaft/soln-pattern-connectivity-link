@@ -153,7 +153,7 @@ Deleting the namespace removes workshop app resources, routes, policies, and tra
 
 ## Optional monetization track
 
-Continue with [the monetization workshop](../documentation/modules/ROOT/pages/05-monetization.adoc) and the runnable examples under `workshop/monetization/`. It covers ConfigMap and Grafana usage estimates, Lago usage events, Platform Billing Operator for AI inference, and Moesif API analytics.
+Continue with [the monetization workshop](../documentation/modules/ROOT/pages/05-monetization.adoc) and the runnable examples under `workshop/monetization/`. It covers Grafana usage estimates, Lago usage events, Platform Billing Operator for AI inference, and Moesif API analytics. The OpenShift runbook records the Lago chart deployment and non-root frontend image adaptation used in the workshop environment.
 
 ## Troubleshooting checklist
 

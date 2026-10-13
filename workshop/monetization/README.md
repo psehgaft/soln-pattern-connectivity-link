@@ -123,3 +123,89 @@ The WASM plugin is external to Connectivity Link. Confirm its compatibility with
 ## Cleanup
 
 Remove the demo dashboard and usage ConfigMap from their namespaces. Delete any WasmPlugin and service-entry resources only if this workshop created them. Clean up Lago test events/subscriptions in the Lago test tenant.
+
+
+## OpenShift deployment notes from the workshop environment
+
+The files in `openshift/` capture the OpenShift-specific path that reached a deployed Lago release. Review the image tags, namespace, registry, and private Helm values for the target cluster before using them.
+
+1. Copy `env/workshop.env.example` to a private file, edit it, and export its values in the current shell. Keep the Lago values file and API key outside Git.
+2. The chart was installed at version `2.1.1`. API, migration, and frontend images were built/published to the cluster's internal image registry and selected with explicit image tags. The frontend build helper and `openshift/deploy-lago.sh` provide reusable commands. The API image tag must already exist in the internal registry.
+3. The upstream `getlago/front:v1.41.0` image failed under OpenShift's `restricted-v2` SCC. Startup needed writable `/usr/share/nginx/html`, writable nginx cache paths, a non-privileged listener, and a writable PID file. `openshift/front-image/Dockerfile` prepares those paths, moves the listener to `8080`, and writes the PID file to `/tmp/nginx.pid`.
+4. Run the helpers after exporting values from your private environment file:
+
+```sh
+set -a
+source /path/to/workshop.env
+set +a
+bash workshop/monetization/openshift/build-front-image.sh
+bash workshop/monetization/openshift/deploy-lago.sh
+```
+
+5. API and frontend Services were exposed as Routes, and both Routes were configured for edge TLS with HTTP redirected to HTTPS. If Routes do not already exist, expose them once, then apply TLS:
+
+```sh
+oc expose service/lago-front -n "$LAGO_NAMESPACE" --name="$LAGO_FRONT_ROUTE"
+oc expose service/lago-api -n "$LAGO_NAMESPACE" --name="$LAGO_API_ROUTE"
+for route in "$LAGO_FRONT_ROUTE" "$LAGO_API_ROUTE"; do
+  oc patch route "$route" -n "$LAGO_NAMESPACE" --type=merge \
+    -p '{"spec":{"tls":{"termination":"edge","insecureEdgeTerminationPolicy":"Redirect"}}}'
+done
+oc get routes -n "$LAGO_NAMESPACE"
+```
+
+6. The cluster had Grafana Operator, Thanos, and the Kuadrant Console plugin. The Grafana datasource resource was named `thanos`, its display name was `Thanos`, and it selected Grafana instances with `dashboards=grafana`. The datasource URL was the in-cluster Thanos Querier endpoint.
+
+### Confirmed state and remaining validation
+
+- **Confirmed:** the Lago Helm release reached `deployed`; API, frontend, worker, clock, Redis, and PostgreSQL pods were running; the migration Job completed; and the frontend Service had a ready endpoint on port `8080`.
+- **Confirmed:** the separate PostgreSQL 15 test service using `getlago/postgres-partman:15.0-alpine` exposed `pg_partman` version `5.4.0`. This extension check alone does not prove which database URI Lago currently uses. Inspect active configuration without printing credentials before changing database settings.
+- **Not confirmed:** successful Lago UI login, creation/retrieval of a Lago API key, or ingestion of a billable event. The attempted event returned HTTP 401 with an empty/invalid API key. Treat Lago billing as unverified end to end until a test key, test subscription, and successful event response are confirmed.
+- **Not confirmed:** the PromQL series returning data through the cluster's Thanos endpoint. The Grafana datasource was inspected, but the attempted local Thanos API request returned HTTP `000`; that indicates the request did not complete, not that the selected metrics have zero traffic.
+- Grafana dollar panels are **illustrative estimates**. They do not read Lago-rated totals and are not invoices.
+
+### Grafana API-usage dashboard template
+
+`grafana/api-usage-billing.json` is a standard Grafana import JSON. It includes filters for metrics job, reporter, destination service, API user, and API application, plus an editable example price per request. Render environment-specific defaults and validate the JSON before importing:
+
+```sh
+set -a
+source /path/to/workshop.env
+set +a
+python3 workshop/monetization/grafana/render-api-dashboard.py > /tmp/api-usage-billing.json
+python3 -m json.tool /tmp/api-usage-billing.json >/dev/null
+```
+
+Import the result in Grafana and select the `Thanos` datasource. The environment variables control job, reporter, dashboard UID/title, example tariff, and currency display. Destination service, API user, and API application populate from metric labels. Replace selectors with values visible in Grafana Explore if this cluster differs. If the series or labels are absent, panels will be empty. The estimated amount is request count multiplied by the editable sample tariff; it is not linked to a Lago invoice.
+
+The optional datasource template `grafana/thanos-datasource.yaml.tpl` reflects the observed Grafana Operator resource. Review it with `oc explain grafanadatasource.spec --api-version=grafana.integreatly.org/v1beta1` before applying it to another operator version. To render just its environment placeholders:
+
+```sh
+envsubst '${GRAFANA_NAMESPACE} ${GRAFANA_INSTANCE_LABEL_KEY} ${GRAFANA_INSTANCE_LABEL_VALUE} ${GRAFANA_DATASOURCE_NAME} ${THANOS_URL}' \
+  < workshop/monetization/grafana/thanos-datasource.yaml.tpl | oc apply -f -
+```
+
+Do not replace an existing datasource that has different credentials or TLS settings. Never put a bearer token in the dashboard or datasource URL.
+
+### OpenShift Console and Connectivity Link
+
+The `kuadrant-console-plugin` was added to the cluster Console operator's plugin list and its pod ran in `kuadrant-system`. Verify those facts and refresh the OpenShift Console:
+
+```sh
+oc get console.operator.openshift.io cluster -o json | jq '.spec.plugins'
+oc get consoleplugins.console.openshift.io
+oc get pods -n kuadrant-system | grep kuadrant-console-plugin
+```
+
+If it is not already listed and `.spec.plugins` is an array, enable the plugin with:
+
+```sh
+oc patch console.operator.openshift.io cluster --type=json \
+  -p '[{"op":"add","path":"/spec/plugins/-","value":"kuadrant-console-plugin"}]'
+```
+
+The Kuadrant plugin exposes Connectivity Link/Kuadrant console features; it is not the Grafana monetization dashboard. Use Grafana for request and estimate panels, and the Console plugin for API connectivity and policy resources. A custom monetization page embedded inside the OpenShift Console was not implemented or verified in this workshop.
+
+The environment's Grafana route was:
+https://api-usage-api-observability.apps.cluster-p6pgn.dyn.redhatworkshops.io/d/api-usage-billing/api-usage-and-cost-estimate?orgId=1&from=now-1h&to=now&timezone=browser&refresh=30s
+Use the route created in your own cluster instead of assuming that hostname remains valid.

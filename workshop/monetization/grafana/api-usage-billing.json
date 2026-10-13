@@ -1,0 +1,66 @@
+{
+  "__inputs": [
+    {"name":"DS_PROMETHEUS","label":"Thanos","description":"Prometheus-compatible Thanos datasource","type":"datasource","pluginId":"prometheus","pluginName":"Prometheus"}
+  ],
+  "annotations": {"list": []},
+  "editable": true,
+  "graphTooltip": 1,
+  "panels": [
+    {
+      "datasource":{"type":"prometheus","uid":"${DS_PROMETHEUS}"},
+      "fieldConfig":{"defaults":{"unit":"short","color":{"mode":"thresholds"}},"overrides":[]},
+      "gridPos":{"h":5,"w":6,"x":0,"y":0},"id":1,
+      "targets":[{"expr":"sum(increase(istio_requests_total{job=~\"$job\",reporter=~\"$reporter\",destination_service_name=~\"$destination_service\",api_user=~\"$api_user\",api_application=~\"$api_application\"}[$__range]))","legendFormat":"requests","refId":"A"}],
+      "title":"API requests in selected range","type":"stat"
+    },
+    {
+      "datasource":{"type":"prometheus","uid":"${DS_PROMETHEUS}"},
+      "fieldConfig":{"defaults":{"unit":"currencyUSD","decimals":4,"color":{"mode":"thresholds"}},"overrides":[]},
+      "gridPos":{"h":5,"w":6,"x":6,"y":0},"id":2,
+      "targets":[{"expr":"sum(increase(istio_requests_total{job=~\"$job\",reporter=~\"$reporter\",destination_service_name=~\"$destination_service\",api_user=~\"$api_user\",api_application=~\"$api_application\"}[$__range])) * $price_per_request","legendFormat":"estimated amount","refId":"A"}],
+      "title":"Estimated usage value (illustrative tariff)","description":"Request count × editable dashboard tariff. This estimate is not Lago-rated usage or an invoice.","type":"stat"
+    },
+    {
+      "datasource":{"type":"prometheus","uid":"${DS_PROMETHEUS}"},
+      "fieldConfig":{"defaults":{"unit":"reqps","color":{"mode":"palette-classic"}},"overrides":[]},
+      "gridPos":{"h":8,"w":12,"x":0,"y":5},"id":3,
+      "targets":[{"expr":"sum by (response_code) (rate(istio_requests_total{job=~\"$job\",reporter=~\"$reporter\",destination_service_name=~\"$destination_service\",api_user=~\"$api_user\",api_application=~\"$api_application\"}[5m]))","legendFormat":"{{response_code}}","refId":"A"}],
+      "title":"Request rate by response code","type":"timeseries"
+    },
+    {
+      "datasource":{"type":"prometheus","uid":"${DS_PROMETHEUS}"},
+      "fieldConfig":{"defaults":{"unit":"short","color":{"mode":"palette-classic"}},"overrides":[]},
+      "gridPos":{"h":8,"w":12,"x":12,"y":5},"id":4,
+      "targets":[{"expr":"sum by (api_user) (increase(istio_requests_total{job=~\"$job\",reporter=~\"$reporter\",destination_service_name=~\"$destination_service\",api_user=~\"$api_user\",api_application=~\"$api_application\"}[$__range]))","legendFormat":"{{api_user}}","refId":"A"}],
+      "title":"Requests by API user","type":"barchart"
+    },
+    {
+      "datasource":{"type":"prometheus","uid":"${DS_PROMETHEUS}"},
+      "fieldConfig":{"defaults":{"unit":"short","color":{"mode":"palette-classic"}},"overrides":[]},
+      "gridPos":{"h":8,"w":12,"x":0,"y":13},"id":5,
+      "targets":[{"expr":"sum by (api_application) (increase(istio_requests_total{job=~\"$job\",reporter=~\"$reporter\",destination_service_name=~\"$destination_service\",api_user=~\"$api_user\",api_application=~\"$api_application\"}[$__range]))","legendFormat":"{{api_application}}","refId":"A"}],
+      "title":"Requests by API application","type":"barchart"
+    },
+    {
+      "datasource":{"type":"prometheus","uid":"${DS_PROMETHEUS}"},
+      "fieldConfig":{"defaults":{"unit":"short","color":{"mode":"palette-classic"}},"overrides":[]},
+      "gridPos":{"h":8,"w":12,"x":12,"y":13},"id":6,
+      "targets":[{"expr":"sum by (response_code) (increase(istio_requests_total{job=~\"$job\",reporter=~\"$reporter\",destination_service_name=~\"$destination_service\",api_user=~\"$api_user\",api_application=~\"$api_application\"}[$__range]))","legendFormat":"{{response_code}}","refId":"A"}],
+      "title":"Requests by response code","type":"barchart"
+    }
+  ],
+  "schemaVersion":39,
+  "tags":["connectivity-link","api-usage","estimate"],
+  "templating":{"list":[
+    {"name":"job","type":"custom","label":"Metrics job","query":"ai-gateway/internal-ai-gateway","current":{"text":"ai-gateway/internal-ai-gateway","value":"ai-gateway/internal-ai-gateway"},"options":[{"selected":true,"text":"ai-gateway/internal-ai-gateway","value":"ai-gateway/internal-ai-gateway"}],"includeAll":false,"hide":0},
+    {"name":"reporter","type":"custom","label":"Reporter","query":"source","current":{"text":"source","value":"source"},"options":[{"selected":true,"text":"source","value":"source"}],"includeAll":false,"hide":0},
+    {"name":"destination_service","type":"query","label":"Destination service","datasource":{"type":"prometheus","uid":"${DS_PROMETHEUS}"},"definition":"label_values(istio_requests_total{job=\"$job\",reporter=\"$reporter\"}, destination_service_name)","query":{"query":"label_values(istio_requests_total{job=\"$job\",reporter=\"$reporter\"}, destination_service_name)","refId":"StandardVariableQuery"},"refresh":1,"sort":1,"multi":true,"includeAll":true,"allValue":".*","current":{"text":"All","value":"$__all"},"options":[],"hide":0},
+    {"name":"api_user","type":"query","label":"API user","datasource":{"type":"prometheus","uid":"${DS_PROMETHEUS}"},"definition":"label_values(istio_requests_total{job=\"$job\",reporter=\"$reporter\",destination_service_name=~\"$destination_service\"}, api_user)","query":{"query":"label_values(istio_requests_total{job=\"$job\",reporter=\"$reporter\",destination_service_name=~\"$destination_service\"}, api_user)","refId":"StandardVariableQuery"},"refresh":1,"sort":1,"multi":true,"includeAll":true,"allValue":".*","current":{"text":"All","value":"$__all"},"options":[],"hide":0},
+    {"name":"api_application","type":"query","label":"API application","datasource":{"type":"prometheus","uid":"${DS_PROMETHEUS}"},"definition":"label_values(istio_requests_total{job=\"$job\",reporter=\"$reporter\",destination_service_name=~\"$destination_service\"}, api_application)","query":{"query":"label_values(istio_requests_total{job=\"$job\",reporter=\"$reporter\",destination_service_name=~\"$destination_service\"}, api_application)","refId":"StandardVariableQuery"},"refresh":1,"sort":1,"multi":true,"includeAll":true,"allValue":".*","current":{"text":"All","value":"$__all"},"options":[],"hide":0},
+    {"name":"price_per_request","type":"custom","label":"Estimate price / request (USD)","query":"0.05","current":{"text":"0.05","value":"0.05"},"options":[{"selected":true,"text":"0.05","value":"0.05"}],"includeAll":false,"hide":0}
+  ]},
+  "time":{"from":"now-1h","to":"now"},
+  "title":"Connectivity Link — API usage and cost estimate",
+  "uid":"api-usage-billing-template",
+  "version":1
+}
